@@ -1,0 +1,158 @@
+{
+ "melisa.rojas@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "pw": "scrypt:32768:8:1$jW4gmHVDWpMW1sxL$111ece044afe0af6b1b6696953a52c40325a597164a9616caab103d7244300b67a22b16a2ab84dd44f8ccb720101d0b86c8e51a0bd8bc6560899bc56f79db4f8",
+  "activado": "19/11/2026 14:39",
+  "ultimo_ingreso": "20/11/2026 12:59"
+ },
+ "daniel.ochoa@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "pw": "scrypt:32768:8:1$9ulELmD9jtLIpNH7$957bdf55753a58564a6d643089fe606443d5229d81863e0b6e9ed5ad70935eb88d109a01b0842e2fadf4ad2036f6507a7edf3b20b622fc6b01f09e20dcb28a42",
+  "activado": "19/11/2026 14:45",
+  "ultimo_ingreso": "23/11/2026 16:29"
+ },
+ "natalia.sanchez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:37",
+  "activado": "19/11/2026 15:30"
+ },
+ "jorge.moreno@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 10:48",
+  "activado": "20/11/2026 10:48"
+ },
+ "enrique.fajardo@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 10:51",
+  "activado": "20/11/2026 10:51"
+ },
+ "delovirtualaloreal2@gmail.com": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 10:54",
+  "activado": "20/11/2026 10:54"
+ },
+ "stefanny.hernandez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "23/11/2026 16:18",
+  "activado": "20/11/2026 10:54"
+ },
+ "natalia.ospina@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:07",
+  "activado": "20/11/2026 11:07"
+ },
+ "zamir.caro@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:22",
+  "activado": "20/11/2026 11:22"
+ },
+ "paola.montero@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:24",
+  "activado": "20/11/2026 11:24"
+ },
+ "ricardo.montoya@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:28",
+  "activado": "20/11/2026 11:28"
+ },
+ "arnaldo.rodriguez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 11:57",
+  "activado": "20/11/2026 11:57"
+ },
+ "jhonatan.usuga@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "23/11/2026 16:36",
+  "activado": "20/11/2026 12:11"
+ },
+ "miller.alvarez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 12:39",
+  "activado": "20/11/2026 12:39"
+ },
+ "lizeth.yepes@sao6.com.co": {
+  "codigo": "scrypt:32768:8:1$ZW2CjC5WelCub6e8$04becd92ea047369217fd77dbe04acd660f2f1afd96f8c5eb2aad445cdbb4a8a436921fbbdde7fc1c40bcd25ce658c1211297ad54f7aa75f88d058c33a18b833",
+  "codigo_vence": "2026-11-20T12:49:46.920505"
+ },
+ "jamiltone.londono@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 12:43",
+  "activado": "20/11/2026 12:43"
+ },
+ "sharitha.ramirez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 12:59",
+  "activado": "20/11/2026 12:59"
+ },
+ "diego.ramirez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 13:06",
+  "activado": "20/11/2026 13:06"
+ },
+ "samuel.novoa@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 13:14",
+  "activado": "20/11/2026 13:14"
+ },
+ "jaider.mafla@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 13:52",
+  "activado": "20/11/2026 13:52"
+ },
+ "mario.valle@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 14:21",
+  "activado": "20/11/2026 14:21"
+ },
+ "jeferson.ruiz@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 14:25",
+  "activado": "20/11/2026 14:25"
+ },
+ "cristina.correa@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "20/11/2026 15:02",
+  "activado": "20/11/2026 15:02"
+ },
+ "carlos.salas@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "23/11/2026 09:25",
+  "activado": "23/11/2026 09:25"
+ },
+ "sergio.perez@sao6.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "23/11/2026 10:15",
+  "activado": "23/11/2026 10:15"
+ },
+ "natalia.ospina@sao6sas.com.co": {
+  "codigo": null,
+  "codigo_vence": null,
+  "ultimo_ingreso": "23/11/2026 17:24",
+  "activado": "23/11/2026 17:24"
+ }
+}

@@ -1,0 +1,944 @@
+{
+ "personas": [
+  {
+   "k": "p01",
+   "nombre": "Melisa Rojas",
+   "alias": [
+    "Melisa"
+   ],
+   "email": "melisa.rojas@sao6.com.co",
+   "cargo": "Analista de mejora continua",
+   "area": "Gerencia",
+   "completo": "ROJAS LOPEZ FANYANY MELISA",
+   "jefes": []
+  },
+  {
+   "k": "p02",
+   "nombre": "Ricardo Montoya",
+   "alias": [
+    "Ricardo Montoya",
+    "Ricardo"
+   ],
+   "email": "ricardo.montoya@sao6.com.co",
+   "cargo": "Director recursos humanos",
+   "area": "Gestion Humana",
+   "completo": "MONTOYA AGUDELO RICARDO LEON",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  },
+  {
+   "k": "p03",
+   "nombre": "Zamir Caro",
+   "alias": [
+    "Zamir Caro",
+    "Zamir"
+   ],
+   "email": "zamir.caro@sao6.com.co",
+   "cargo": "Coordinador logistico",
+   "area": "Gerencia",
+   "completo": "CARO FARFAN ZAMIR MIGUEL FERNANDO",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  },
+  {
+   "k": "p04",
+   "nombre": "Enrique Fajardo",
+   "alias": [
+    "Enrique Fajardo",
+    "Enrique"
+   ],
+   "email": "enrique.fajardo@sao6.com.co",
+   "cargo": "Director de operaciones",
+   "area": "Gestion de Operaciones",
+   "completo": "FAJARDO GOMEZ LUIS ENRIQUE",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "p05",
+   "nombre": "Diego Ramírez",
+   "alias": [
+    "Diego Ramírez"
+   ],
+   "email": "diego.ramirez@sao6.com.co",
+   "cargo": "Coordinador de compras y proyectos",
+   "area": "Gestion Financiera",
+   "completo": "RAMIREZ RINCON DIEGO ALEJANDRO",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  },
+  {
+   "k": "p06",
+   "nombre": "Arnaldo Rodríguez",
+   "alias": [
+    "Arnaldo Rodríguez",
+    "Arnaldo"
+   ],
+   "email": "arnaldo.rodriguez@sao6.com.co",
+   "cargo": "Director de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "RODRIGUEZ AVENDAÑO ARNALDO",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  },
+  {
+   "k": "p07",
+   "nombre": "Karen Arias",
+   "alias": [
+    "Karen Arias"
+   ],
+   "email": "karen.arias@sao6.com.co",
+   "cargo": "Coordinador (a)  financiero y control interno",
+   "area": "Gestion Financiera",
+   "completo": "ARIAS YEPES KAREN ESTEFANY",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "p08",
+   "nombre": "Oliver Barbosa",
+   "alias": [
+    "Oliver Barbosa"
+   ],
+   "email": "oliver.barbosa@sao6.com.co",
+   "cargo": "Profesional de programación",
+   "area": "Gestion de Operaciones",
+   "completo": "BARBOSA PARDO OLIVER YACED",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "p09",
+   "nombre": "Andrés Quiñones",
+   "alias": [
+    "Andrés Quiñones"
+   ],
+   "email": "andres.quinones@sao6.com.co",
+   "cargo": "Analista de compras",
+   "area": "Gestion Financiera",
+   "completo": "QUIÑONES VIDAL ANDRES FELIPE",
+   "jefes": [
+    "Diego Ramírez"
+   ]
+  },
+  {
+   "k": "p10",
+   "nombre": "Carlos Alvarado",
+   "alias": [
+    "Carlos Alvarado"
+   ],
+   "email": "carlos.alvarado@sao6.com.co",
+   "cargo": "Inspector de calidad",
+   "area": "Gestion de Mantenimiento",
+   "completo": "ALVARADO TENORIO CARLOS ALBERTO",
+   "jefes": [
+    "Ricardo Montoya"
+   ]
+  },
+  {
+   "k": "p11",
+   "nombre": "Natalia Sánchez",
+   "alias": [
+    "Natalia Sánchez",
+    "Natalia Sanchez"
+   ],
+   "email": "natalia.sanchez@sao6.com.co",
+   "cargo": "Profesional de mejora continua",
+   "area": "Gerencia",
+   "completo": "SANCHEZ FRANCO NATALIA",
+   "jefes": [
+    "Zamir Caro"
+   ]
+  },
+  {
+   "k": "p12",
+   "nombre": "Natalia Ospina",
+   "alias": [
+    "Natalia Ospina"
+   ],
+   "email": "natalia.ospina@sao6.com.co",
+   "cargo": "Director  (a)  financiero(a)",
+   "area": "Gestion Financiera",
+   "completo": "OSPINA GIRALDO NATALIA ALEXANDRA"
+  },
+  {
+   "k": "p13",
+   "nombre": "Paola Montero",
+   "alias": [
+    "Paola Montero",
+    "Paola M"
+   ],
+   "email": "paola.montero@sao6.com.co",
+   "cargo": "Oficial de cumplimiento",
+   "area": "Gestion Humana",
+   "completo": "MONTERO PINILLA JANETH PAOLA",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "p14",
+   "nombre": "Daniel Ochoa",
+   "alias": [
+    "Daniel Ochoa"
+   ],
+   "email": "daniel.ochoa@sao6.com.co",
+   "cargo": "Analista de mejora continua y automatizacion",
+   "area": "Gerencia",
+   "completo": "OCHOA CASTRILLON DANIEL",
+   "jefes": [
+    "Zamir Caro"
+   ]
+  },
+  {
+   "k": "p15",
+   "nombre": "Daniel Ospina",
+   "alias": [
+    "Daniel Ospina",
+    "Danie Ospina"
+   ],
+   "email": "daniel.ospina@sao6.com.co",
+   "cargo": "Profesional de gestion de la informacion",
+   "area": "Gestion de Operaciones",
+   "completo": "OSPINA VASQUEZ DANIEL ESTEBAN",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "p17",
+   "nombre": "Alexandra",
+   "alias": [
+    "Alexandra"
+   ],
+   "email": "alexandra.tapias@sies24.com",
+   "cargo": "Sies24",
+   "area": "SIES24",
+   "completo": "ALEXANDRA TAPIAS",
+   "jefes": []
+  },
+  {
+   "k": "p18",
+   "nombre": "Ana Cristina",
+   "alias": [
+    "Ana Cristina"
+   ],
+   "email": "delovirtualaloreal2@gmail.com",
+   "cargo": "Psicologa",
+   "area": "Gestion Humana",
+   "completo": "ORTIZ ANA CRISTINA",
+   "jefes": [
+    "Ricardo Montoya"
+   ]
+  },
+  {
+   "k": "p19",
+   "nombre": "Jonathan Usuga",
+   "alias": [
+    "Jonathan Usuga",
+    "Jonathan"
+   ],
+   "email": "jhonatan.usuga@sao6.com.co",
+   "cargo": "Analista de confiabilidad y automatizacion",
+   "area": "Gestion de Remanufactura",
+   "completo": "USUGA FLOREZ JHONATAN",
+   "jefes": [
+    "Diego Ramírez",
+    "Zamir Caro"
+   ]
+  },
+  {
+   "k": "p20",
+   "nombre": "Jorge Moreno",
+   "alias": [
+    "Jorge Moreno"
+   ],
+   "email": "jorge.moreno@sao6.com.co",
+   "cargo": "Profesional de planeacion y programacion",
+   "area": "Gestion de Operaciones",
+   "completo": "MORENO AGUDELO JORGE ANDRES",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "p21",
+   "nombre": "Juan Fernando",
+   "alias": [
+    "Juan Fernando"
+   ],
+   "email": "juan.castro@sao6.com.co",
+   "cargo": "Líder sistemas",
+   "area": "Gestion Financiera",
+   "completo": "CASTRO OZUNA JUAN FERNANDO",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "p22",
+   "nombre": "Jhon Pérez",
+   "alias": [
+    "Jhon Pérez",
+    "Jhon Perez"
+   ],
+   "email": "jhon.perez@sao6.com.co",
+   "cargo": "Lider de almacen",
+   "area": "Almacen",
+   "completo": "PEREZ GONZALEZ JHON DARIO",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "p23",
+   "nombre": "Martín Hernández",
+   "alias": [
+    "Martín Hernández",
+    "Martín",
+    "Martín Leonardo"
+   ],
+   "email": "martin.hernandez@sao6.com.co",
+   "cargo": "Gerente general",
+   "area": "Gerencia",
+   "completo": "HERNANDEZ MARTIN",
+   "jefes": []
+  },
+  {
+   "k": "p25",
+   "nombre": "Valentina González",
+   "alias": [
+    "Valentina"
+   ],
+   "email": "valentina.gonzalez@sao6.com.co",
+   "cargo": "Auxiliar de compensación",
+   "area": "Gestion Humana",
+   "completo": "GONZALEZ AGUDELO VALENTINA"
+  },
+  {
+   "k": "p26",
+   "nombre": "Juan Pablo",
+   "alias": [
+    "Juan Pablo"
+   ],
+   "email": "",
+   "cargo": "",
+   "area": "",
+   "completo": ""
+  },
+  {
+   "k": "p27",
+   "nombre": "Nelson Ricardo Urrea",
+   "alias": [
+    "Nelson"
+   ],
+   "email": "ricardo.urrea@sao6.com.co",
+   "cargo": "Coordinador pesv",
+   "area": "Gestion de Operaciones",
+   "completo": "URREA PEREZ NELSON RICARDO",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "p28",
+   "nombre": "Diego Morales",
+   "alias": [
+    "Diego Morales"
+   ],
+   "email": "",
+   "cargo": "",
+   "area": "",
+   "completo": ""
+  },
+  {
+   "k": "6aaf00aa",
+   "nombre": "Jaider Mafla",
+   "alias": [
+    "Jaider Mafla"
+   ],
+   "email": "jaider.mafla@sao6.com.co",
+   "cargo": "Analista cmo",
+   "area": "Gestion de Operaciones",
+   "completo": "MAFLA GONZALEZ JAIDER ANDRES",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "748bd41d",
+   "nombre": "Ana Minota",
+   "alias": [
+    "Ana Minota"
+   ],
+   "email": "ana.minota@sao6.com.co",
+   "cargo": "Analista contable",
+   "area": "Gestion Financiera",
+   "completo": "MINOTA VALDERRAMA ANA YURLEIDY",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "9a9a37bf",
+   "nombre": "Maritza Cano",
+   "alias": [
+    "Maritza Cano"
+   ],
+   "email": "maritza.cano@sao6.com.co",
+   "cargo": "Analista de compensacion",
+   "area": "Gestion Humana",
+   "completo": "CANO RESTREPO MARITZA",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "f81fe950",
+   "nombre": "Lyda Gomez",
+   "alias": [
+    "Lyda Gomez"
+   ],
+   "email": "lyda.gomez@sao6.com.co",
+   "cargo": "Analista de compras",
+   "area": "Gestion Financiera",
+   "completo": "UJUETA GOMEZ LYDA MARIA",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  },
+  {
+   "k": "dcbee514",
+   "nombre": "Jamiltone Londoño",
+   "alias": [
+    "Jamiltone Londoño"
+   ],
+   "email": "jamiltone.londono@sao6.com.co",
+   "cargo": "Analista de confiabilidad",
+   "area": "Gestion de Remanufactura",
+   "completo": "LONDOÑO HIDALGO JAMILTON ESTIVENS",
+   "jefes": [
+    "Diego Ramírez"
+   ]
+  },
+  {
+   "k": "c0d669a2",
+   "nombre": "Jose Espinosa",
+   "alias": [
+    "Jose Espinosa"
+   ],
+   "email": "jose.espinosa@sao6.com.co",
+   "cargo": "Analista de control interno",
+   "area": "Gerencia",
+   "completo": "ESPINOSA NEIRA JOSE RICARDO",
+   "jefes": [
+    "Karen Arias"
+   ]
+  },
+  {
+   "k": "4beb203c",
+   "nombre": "Samuel Novoa",
+   "alias": [
+    "Samuel Novoa"
+   ],
+   "email": "samuel.novoa@sao6.com.co",
+   "cargo": "Analista de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "NOVOA SUTA SAMUEL JERONIMO",
+   "jefes": [
+    "Arnaldo Rodríguez"
+   ]
+  },
+  {
+   "k": "40e0b2fd",
+   "nombre": "Lizeth Yepes",
+   "alias": [
+    "Lizeth Yepes"
+   ],
+   "email": "lizeth.yepes@sao6.com.co",
+   "cargo": "Analista de recursos humanos",
+   "area": "Gestion Humana",
+   "completo": "YEPES CIRO LIZETH CRISTINA",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "f8754f5f",
+   "nombre": "Miller Alvarez",
+   "alias": [
+    "Miller Alvarez"
+   ],
+   "email": "miller.alvarez@sao6.com.co",
+   "cargo": "Analista de sistemas",
+   "area": "Gestion Financiera",
+   "completo": "ALVAREZ ZAPATA MILLER ARBEY",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "7ae97e8a",
+   "nombre": "Esteban Palacio",
+   "alias": [
+    "Esteban Palacio"
+   ],
+   "email": "esteban.palacio@sao6.com.co",
+   "cargo": "Auxiliar de almacen",
+   "area": "Almacen",
+   "completo": "PALACIO DAVID JUAN ESTEBAN"
+  },
+  {
+   "k": "acb42dcb",
+   "nombre": "Jorge Leon",
+   "alias": [
+    "Jorge Leon"
+   ],
+   "email": "jorge.leon@sao6.com.co",
+   "cargo": "Auxiliar de almacen",
+   "area": "Almacen",
+   "completo": "LEON GARRIDO JORGE LUIS"
+  },
+  {
+   "k": "e6bcef53",
+   "nombre": "Angel Petro",
+   "alias": [
+    "Angel Petro"
+   ],
+   "email": "angel.petro@sao6.com.co",
+   "cargo": "Auxiliar de almacen",
+   "area": "Almacen",
+   "completo": "PETRO ARGEL ANGEL DE JESUS"
+  },
+  {
+   "k": "d127fba9",
+   "nombre": "Jose Velandia",
+   "alias": [
+    "Jose Velandia"
+   ],
+   "email": "jose.velandia@sao6.com.co",
+   "cargo": "Auxiliar de almacen",
+   "area": "Almacen",
+   "completo": "VELANDIA VELOZA JOSE PASTOR"
+  },
+  {
+   "k": "8804f881",
+   "nombre": "Oscar Perez",
+   "alias": [
+    "Oscar Perez"
+   ],
+   "email": "oscar.perez@sao6.com.co",
+   "cargo": "Auxiliar de almacen",
+   "area": "Almacen",
+   "completo": "PEREZ CASTRILLON OSCAR HUGO"
+  },
+  {
+   "k": "faf39e63",
+   "nombre": "Sandra Garcia",
+   "alias": [
+    "Sandra Garcia"
+   ],
+   "email": "sandra.garcia@sao6.com.co",
+   "cargo": "Auxiliar de cad y servicio al cliente",
+   "area": "Gestion Integral",
+   "completo": "GARCIA HERNANDEZ SANDRA LISBEY",
+   "jefes": [
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "b8a1ff4d",
+   "nombre": "Julieth Garcia",
+   "alias": [
+    "Julieth Garcia"
+   ],
+   "email": "julieth.garcia@sao6.com.co",
+   "cargo": "Auxiliar de compensación",
+   "area": "Gestion de Mantenimiento",
+   "completo": "GARCIA TORRES JULIETH MARCELA",
+   "jefes": [
+    "Arnaldo Rodríguez"
+   ]
+  },
+  {
+   "k": "2f9dc03c",
+   "nombre": "Sharitha Ramirez",
+   "alias": [
+    "Sharitha Ramirez"
+   ],
+   "email": "sharitha.ramirez@sao6.com.co",
+   "cargo": "Auxiliar de desarrollo",
+   "area": "Gestion Humana",
+   "completo": "RAMIREZ PALACIO SHARITHA",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "d55d5478",
+   "nombre": "Miguel Rodriguez",
+   "alias": [
+    "Miguel Rodriguez"
+   ],
+   "email": "miguel.rodriguez@sao6.com.co",
+   "cargo": "Auxiliar de herramientas",
+   "area": "Almacen",
+   "completo": "RODRIGUEZ PEREZ MIGUEL DE JESUS",
+   "jefes": [
+    "Jhon Perez",
+    "Karen Arias"
+   ]
+  },
+  {
+   "k": "b5298789",
+   "nombre": "Jose Esquiver",
+   "alias": [
+    "Jose Esquiver"
+   ],
+   "email": "jose.esquiver@sao6.com.co",
+   "cargo": "Auxiliar de infraestructura",
+   "area": "Infraestructura",
+   "completo": "ESQUIVER CARVAJAL JOSE ALFREDO",
+   "jefes": [
+    "Sergio Perez"
+   ]
+  },
+  {
+   "k": "1a749175",
+   "nombre": "Stefanny Hernández",
+   "alias": [
+    "Stefanny Hernandez",
+    "Stephanie"
+   ],
+   "email": "stefanny.hernandez@sao6.com.co",
+   "cargo": "Auxiliar de programacion",
+   "area": "Gestion de Operaciones",
+   "completo": "HERNANDEZ MONSALVE STEFANNY",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "86c06345",
+   "nombre": "Eliana Paneso",
+   "alias": [
+    "Eliana Paneso"
+   ],
+   "email": "eliana.paneso@sao6.com.co",
+   "cargo": "Auxiliar de servicios generales",
+   "area": "Gestion Humana",
+   "completo": "PANESO OTALVARO ELIANA"
+  },
+  {
+   "k": "5b519a93",
+   "nombre": "Jorge Conde",
+   "alias": [
+    "Jorge Conde"
+   ],
+   "email": "jorge.conde@sao6.com.co",
+   "cargo": "Auxiliar de servicios generales",
+   "area": "Gestion Humana",
+   "completo": "CONDE PEÑA JORGE LUIS"
+  },
+  {
+   "k": "fefb0fe9",
+   "nombre": "Luz Yepes",
+   "alias": [
+    "Luz Yepes"
+   ],
+   "email": "luz.yepes@sao6.com.co",
+   "cargo": "Auxiliar de servicios generales",
+   "area": "Gestion Humana",
+   "completo": "YEPES BOHORQUEZ LUZ ESTELA"
+  },
+  {
+   "k": "3a4136d8",
+   "nombre": "Jeferson Ruiz",
+   "alias": [
+    "Jeferson Ruiz"
+   ],
+   "email": "jeferson.ruiz@sao6.com.co",
+   "cargo": "Auxiliar juridico",
+   "area": "Gerencia",
+   "completo": "RUIZ ALZATE JEFERSON",
+   "jefes": [
+    "Juan Gallego"
+   ]
+  },
+  {
+   "k": "67a15b1e",
+   "nombre": "Sonia Osorio",
+   "alias": [
+    "Sonia Osorio"
+   ],
+   "email": "sonia.osorio@sao6.com.co",
+   "cargo": "Contador (a)",
+   "area": "Gestion Financiera",
+   "completo": "OSORIO PULIDO SONIA",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "dfea38dd",
+   "nombre": "Deiby Ochoa",
+   "alias": [
+    "Deiby Ochoa"
+   ],
+   "email": "deiby.ochoa@sao6.com.co",
+   "cargo": "Coordinador de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "OCHOA MONTAÑEZ DEIBY ESNEIDER",
+   "jefes": [
+    "Arnaldo Rodríguez"
+   ]
+  },
+  {
+   "k": "1bb1e929",
+   "nombre": "Mario Valle",
+   "alias": [
+    "Mario Valle"
+   ],
+   "email": "mario.valle@sao6.com.co",
+   "cargo": "Coordinador de operaciones",
+   "area": "Gestion de Operaciones",
+   "completo": "VALLE GARCIA MARIO JAVIER",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "69246bf1",
+   "nombre": "Carlos Pineda",
+   "alias": [
+    "Carlos Pineda"
+   ],
+   "email": "carlos.pineda@sao6.com.co",
+   "cargo": "Facilitador tecnico de calidad",
+   "area": "Gestion de Mantenimiento",
+   "completo": "PINEDA QUIÑONES CARLOS ALBERTO",
+   "jefes": [
+    "Ricardo Montoya"
+   ]
+  },
+  {
+   "k": "98fe23e0",
+   "nombre": "Omar Arango",
+   "alias": [
+    "Omar Arango"
+   ],
+   "email": "omar.arango@sao6.com.co",
+   "cargo": "Lider de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "ARANGO ZULUAGA OMAR ANDRES",
+   "jefes": [
+    "Deiby Ochoa"
+   ]
+  },
+  {
+   "k": "a88c113c",
+   "nombre": "Josef Acosta",
+   "alias": [
+    "Josef Acosta"
+   ],
+   "email": "josef.acosta@sao6.com.co",
+   "cargo": "Lider de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "ACOSTA BELTRAN JOSE FERNANDO",
+   "jefes": [
+    "Deiby Ochoa"
+   ]
+  },
+  {
+   "k": "02d03739",
+   "nombre": "Juan Garcia",
+   "alias": [
+    "Juan Garcia"
+   ],
+   "email": "juan.garcia@sao6.com.co",
+   "cargo": "Lider de mantenimiento",
+   "area": "Gestion de Mantenimiento",
+   "completo": "GARCIA GARIZADO JUAN GABRIEL",
+   "jefes": [
+    "Deiby Ochoa"
+   ]
+  },
+  {
+   "k": "1fe2c521",
+   "nombre": "Franklin Ortiz",
+   "alias": [
+    "Franklin Ortiz"
+   ],
+   "email": "franklin.ortiz@sao6.com.co",
+   "cargo": "Oficial",
+   "area": "Infraestructura",
+   "completo": "ORTIZ ORDOÑEZ FRANKLIN JAVIER",
+   "jefes": [
+    "Sergio Perez"
+   ]
+  },
+  {
+   "k": "e288f99d",
+   "nombre": "Carlos Salas",
+   "alias": [
+    "Carlos Salas"
+   ],
+   "email": "carlos.salas@sao6.com.co",
+   "cargo": "Profesional de cmo",
+   "area": "Gestion de Operaciones",
+   "completo": "SALAS BEDOYA CARLOS ANDRES",
+   "jefes": [
+    "Enrique Fajardo"
+   ]
+  },
+  {
+   "k": "0f2b02d9",
+   "nombre": "Martha Garcia",
+   "alias": [
+    "Martha Garcia"
+   ],
+   "email": "martha.garcia@sao6.com.co",
+   "cargo": "Profesional de compensación",
+   "area": "Gestion Humana",
+   "completo": "GARCIA ANGEL MARTHA CECILIA",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "cc9cc217",
+   "nombre": "Jose Perez",
+   "alias": [
+    "Jose Perez"
+   ],
+   "email": "jose.perez@sao6.com.co",
+   "cargo": "Profesional de comunicaciones",
+   "area": "Gestion Humana",
+   "completo": "PEREZ MARTINEZ JOSE LUIS",
+   "jefes": [
+    "Ricardo Montoya",
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "b6e2872d",
+   "nombre": "Natanael Feria",
+   "alias": [
+    "Natanael Feria"
+   ],
+   "email": "natanael.feria@sao6.com.co",
+   "cargo": "Profesional de planeacion y programacion",
+   "area": "Gestion de Mantenimiento",
+   "completo": "FERIA BARROS NATANAEL ANDRES",
+   "jefes": [
+    "Arnaldo Rodríguez"
+   ]
+  },
+  {
+   "k": "980b1344",
+   "nombre": "Daniel Salazar",
+   "alias": [
+    "Daniel Salazar"
+   ],
+   "email": "daniel.salazar@sao6.com.co",
+   "cargo": "Profesional de planeacion y programacion",
+   "area": "Gestion de Mantenimiento",
+   "completo": "SALAZAR GARCIA DANIEL",
+   "jefes": [
+    "Arnaldo Rodríguez"
+   ]
+  },
+  {
+   "k": "4972c7c9",
+   "nombre": "Cristina Correa",
+   "alias": [
+    "Cristina Correa"
+   ],
+   "email": "cristina.correa@sao6.com.co",
+   "cargo": "Profesional de seguridad salud en el trabajo y ambiental",
+   "area": "Gestion Integral",
+   "completo": "CORREA RESTREPO CRISTINA",
+   "jefes": [
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "a5decc9e",
+   "nombre": "Sergio Perez",
+   "alias": [
+    "Sergio Perez"
+   ],
+   "email": "sergio.perez@sao6.com.co",
+   "cargo": "Profesional de sistema de gestion integral",
+   "area": "Gestion Integral",
+   "completo": "PEREZ GIRALDO SERGIO ALEJANDRO",
+   "jefes": [
+    "Paola Montero"
+   ]
+  },
+  {
+   "k": "f4374f48",
+   "nombre": "Juan Gallego",
+   "alias": [
+    "Juan Gallego"
+   ],
+   "email": "juan.gallego@sao6.com.co",
+   "cargo": "Profesional juridico",
+   "area": "Gerencia",
+   "completo": "GALLEGO COLORADO JUAN CARLOS",
+   "jefes": []
+  },
+  {
+   "k": "b5aa1374",
+   "nombre": "Yuli Londoño",
+   "alias": [
+    "Yuli Londoño"
+   ],
+   "email": "yuli.londono@sao6.com.co",
+   "cargo": "Tesorero(a)",
+   "area": "Gestion Financiera",
+   "completo": "LONDOÑO BENITEZ YULI ANDREA",
+   "jefes": [
+    "Natalia Ospina"
+   ]
+  },
+  {
+   "k": "6fe74f2e",
+   "nombre": "Juan Prieto",
+   "alias": [
+    "Juan Prieto"
+   ],
+   "email": "juan.prieto@sies24.com",
+   "cargo": "Sies24",
+   "area": "EXTERNO",
+   "completo": "JUAN PRIETO",
+   "jefes": []
+  },
+  {
+   "k": "c3ea526f",
+   "nombre": "Natalia Ospina",
+   "alias": [
+    "Natalia Ospina"
+   ],
+   "email": "natalia.ospina@sao6sas.com.co",
+   "cargo": "Director  (a)  financiero(a)",
+   "area": "Gestion Financiera",
+   "completo": "OSPINA GIRALDO NATALIA ALEXANDRA",
+   "jefes": [
+    "Martín Hernández"
+   ]
+  }
+ ]
+}
