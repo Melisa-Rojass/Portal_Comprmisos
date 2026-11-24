@@ -1,0 +1,54 @@
+PORTAL DE COMPROMISOS SAO6 · PRUEBA1 (DJANGO)
+=============================================
+
+Es el mismo portal (mismas pantallas, mismas funciones), reescrito en Django.
+Corre aparte del portal original para poder probarlo sin afectarlo:
+
+  - Portal original (Flask):  http://S6-GER-P03:8050   -> sigue funcionando igual.
+  - Prueba1 (Django):         http://S6-GER-P03:8051
+  - Panel de datos Django:    http://localhost:8051/admin
+
+CÓMO ENCENDERLO
+1. Doble clic en "Iniciar prueba1.bat".
+   La primera vez instala Django (necesita internet) y crea la base de datos
+   copiando personas, cuentas, notas y estado del portal original.
+2. Abre http://localhost:8051 y entra con tu correo y el código que te llega.
+3. (Opcional) "Crear usuario del panel admin.bat" crea el usuario y contraseña
+   para entrar a http://localhost:8051/admin.
+Para apagarlo, cierra la ventana.
+
+QUÉ CAMBIA FRENTE AL ORIGINAL
+- Los datos (personas, cuentas, notas, correos enviados, cierres y estado de
+  las revisiones) se guardan en la base de datos portal.sqlite3 en lugar de los
+  archivos .json. Para el servidor se puede cambiar por PostgreSQL en
+  portal_sao6\settings.py (bloque DATABASES).
+- Panel /admin de Django para consultar y corregir esos datos.
+- Las tareas se siguen leyendo directamente del acta vigente de cada comité.
+- La configuración sigue en config.json (de esta carpeta). Se creó copiando la
+  del portal original, con puerto 8051 y MODO PRUEBA activo: los avisos,
+  recordatorios y resúmenes a jefes llegan solo a correo_prueba. Los códigos de
+  ingreso sí llegan a cada persona.
+
+IMPORTANTE MIENTRAS SE PRUEBA
+- Lee y escribe las MISMAS actas que el portal original: si cierras una tarea
+  en prueba1, queda cerrada de verdad en el acta (y se ve en los dos portales).
+- Las personas, notas y cuentas son una copia: lo que cambies en prueba1 no se
+  pasa al portal original, y viceversa.
+- Al empezar cada quien pide un código nuevo (los del portal original no se
+  copian porque estaban cifrados con otro método).
+
+ARCHIVOS
+  manage.py                 Comandos de Django (los usa el .bat).
+  portal_sao6\              Ajustes (settings.py) y direcciones (urls.py).
+  compromisos\nucleo.py     Lógica del portal (actas, correos, revisiones, Excel, cierres).
+  compromisos\views.py      Respuestas a la página (mismas direcciones del original).
+  compromisos\models.py     Tablas de la base de datos.
+  compromisos\almacen.py    Lectura y escritura en la base de datos.
+  compromisos\admin.py      Panel /admin.
+  compromisos\management\commands\
+      importar_json.py      Copia los datos del portal original (solo la primera vez).
+      iniciar.py            Enciende el portal y las revisiones automáticas.
+  portal.html, iconos       La página y los íconos (iguales al original).
+  config.json               Configuración y clave del correo. No compartir.
+  portal.sqlite3            Base de datos (se crea sola). No compartir.
+  portal.log                Registro de lo que hace el portal.

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de compromisos – SAO6</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#005439">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/icono-192.png">
+<style>
+:root{--v:#6BA43A;--vo:#005439;--vt:#46913C;--g:#747074;--bg:#F5F7F3;--card:#fff;--line:#E3E8DF;--am:#FFF2CC;--amt:#8A6D00;--rojo:#C00000;--vc:#E2EFDA}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#1f2a1f;font-size:14px}
+header{background:var(--vo);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px}
+header img{width:40px;height:40px;background:#fff;border-radius:8px;padding:4px}
+header h1{font-size:18px;margin:0}
+header .sub{font-size:12px;opacity:.8}
+header .who{margin-left:auto;text-align:right;font-size:13px}
+main{max-width:1100px;margin:0 auto;padding:20px}
+nav.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+nav.tabs button{border:1px solid var(--line);background:#fff;color:var(--vo);padding:8px 14px;border-radius:20px;cursor:pointer;font:inherit;font-weight:bold}
+nav.tabs button.on{background:var(--vt);color:#fff;border-color:var(--vt)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border-radius:10px;padding:14px;border:1px solid var(--line);cursor:pointer}
+.kpi.on{outline:2px solid var(--vt)}
+.kpi b{display:block;font-size:26px;color:var(--vo)}
+.kpi span{color:var(--g);font-size:12px}
+.kpi.venc b{color:var(--rojo)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select{font:inherit;padding:7px 10px;border:1px solid #cfd6cb;border-radius:6px;background:#fff}
+input[type=search]{flex:1;min-width:200px}
+.cbx{position:relative;flex:1 1 240px;display:flex}.cbx input{width:100%}
+.cbl{position:absolute;top:100%;left:0;right:0;z-index:30;margin:3px 0 0;padding:4px 0;list-style:none;background:#fff;border:1px solid #cfd6cb;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,.12);max-height:300px;overflow:auto}
+.cbl li{padding:6px 10px;cursor:pointer;font-size:14px}.cbl li:hover,.cbl li.on{background:#EEF5EA}.cbl li.nd{color:var(--g);cursor:default;background:none}
+.list{display:flex;flex-direction:column;gap:10px}
+.task{background:#fff;border:1px solid var(--line);border-left:5px solid var(--v);border-radius:8px;padding:12px 14px}
+.task.pend{border-left-color:#E0B000}
+.task.venc{border-left-color:var(--rojo);background:#FDF0EF}
+.task.venc .t{color:#7A0000}
+.task.cerr{background:#FAFDF8}
+.emo{font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;font-size:13px;line-height:1}
+.fel{color:var(--vo);font-weight:600;font-size:12px}
+.task .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--g);margin-bottom:6px}
+.task .t{font-size:15px;line-height:1.35}
+.task .meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12.5px}
+.task .meta div span{color:var(--g)}
+.task .extra{margin-top:8px;font-size:12.5px;background:var(--bg);padding:8px 10px;border-radius:6px}
+.pill{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11.5px;font-weight:bold}
+.pill.p{background:var(--am);color:var(--amt)}
+.pill.c{background:var(--vc);color:var(--vo)}
+.pill.v{background:#FADBD8;color:var(--rojo)}
+.chip{display:inline-block;background:var(--vc);color:var(--vo);border-radius:10px;padding:2px 8px;margin:2px;font-size:12px}
+.chip button{border:0;background:none;color:var(--vo);cursor:pointer;padding:0 0 0 4px;font-weight:bold}
+.empty{background:#fff;border:1px dashed #cfd6cb;border-radius:10px;padding:30px;text-align:center;color:var(--g)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+.panel h2{font-size:15px;color:var(--vt);margin:0 0 10px}
+.panel p.help{color:var(--g);font-size:12.5px;margin:0 0 12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--vo);color:#fff;text-align:left;padding:7px 8px;font-weight:bold}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.btn{background:var(--vt);color:#fff;border:0;border-radius:6px;padding:8px 14px;font:inherit;font-weight:bold;cursor:pointer}
+.btn.sec{background:#fff;color:var(--vo);border:1px solid var(--vt)}
+.btn:disabled{opacity:.5;cursor:default}
+.ok{color:var(--vt);font-weight:bold}.bad{color:var(--rojo)}.muted{color:var(--g)}
+.msg{padding:10px 12px;border-radius:6px;margin:10px 0;font-size:13px}
+.msg.i{background:var(--vc);color:var(--vo)}.msg.e{background:#FADBD8;color:var(--rojo)}
+.hits{margin-top:4px}
+.hits button{display:block;border:1px solid var(--line);background:#fff;padding:4px 8px;margin-top:3px;border-radius:5px;cursor:pointer;font:inherit;font-size:12px;text-align:left;width:100%}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}header .who{display:none}}
+
+.ind-f{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.ind-f label{font-size:12px;color:var(--g)}
+.tops{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.top1{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer;border-top:4px solid var(--vt)}
+.top1.r{border-top-color:var(--rojo)}.top1.a{border-top-color:#E0B000}
+.top1 .l{font-size:12px;color:var(--g)}.top1 .n{font-size:17px;font-weight:bold;color:var(--vo);margin:4px 0}
+.top1 .v{font-size:13px}.top1:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+table.rk th{cursor:pointer;white-space:nowrap}table.rk th.s::after{content:" ▾"}
+table.rk tr.row{cursor:pointer}table.rk tr.row:hover td{background:#F7FAF5}table.rk tr.sel td{background:#EEF5E8}
+table.rk td.num{text-align:center}table.rk td.num a{color:inherit;text-decoration:none;display:block;padding:2px;border-radius:4px}
+table.rk td.num a:hover{background:var(--vc)}td.vr{color:var(--rojo);font-weight:bold}
+.bar{display:flex;height:12px;width:100%;min-width:120px;gap:2px}
+.bar i{display:block;height:100%;border-radius:2px}
+.bar .bc{background:#46913C}.bar .bp{background:#E0B000}.bar .bv{background:#C00000}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--g);margin:6px 0 10px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px;background:var(--c)}
+#det{scroll-margin-top:10px}
+@media(max-width:700px){.tops{grid-template-columns:1fr}}
+.login{max-width:380px;margin:30px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px}
+.login h2{margin:0 0 6px;color:var(--vo)}.login label{display:block;font-size:12.5px;color:var(--g);margin:10px 0}
+.login input{display:block;width:100%;margin-top:4px}.login a,header a{color:var(--vt)}header a{color:#cfe8c0;font-size:12px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:9}
+.mbox{background:#fff;border-radius:12px;padding:22px;max-width:460px;width:92%}.mbox h2{margin-top:0;color:var(--vo);font-size:17px}
+.codigo{font-family:Consolas,monospace;font-size:30px;letter-spacing:4px;text-align:center;background:var(--vc);color:var(--vo);border-radius:8px;padding:12px;margin:10px 0;font-weight:bold}
+.amt{color:var(--amt);font-weight:bold}
+.vci{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:#fff;padding:8px 10px;cursor:pointer;font:inherit}.vci:hover{background:var(--vc)}
+.fl{font-size:12px;color:var(--g)}.fl input,.fl select{display:block;width:100%;margin-top:3px}
+.upd{font-size:12px;margin-top:3px;color:#fff;background:rgba(255,255,255,.14);display:inline-block;padding:2px 8px;border-radius:10px}.upd:empty{display:none}
+.task .top .nb{margin-left:auto;position:relative;border:1px solid var(--line);background:#fff;color:var(--g);border-radius:6px;width:32px;height:30px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.task .top .nb:hover{color:var(--vo);border-color:var(--vt)}.task .top .nb.on{color:var(--vt);border-color:var(--vt);background:var(--vc)}
+.task .top .nb.cb{margin-left:4px}.task .top .nb.cb.on{color:#fff;background:var(--vt);border-color:var(--vt)}
+.task .top .nb i{position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--vt);border:2px solid #fff}
+.extra.minota{background:#EEF5E8;border-left:3px solid var(--vt)}.extra.otranota{background:#F4F4F2;border-left:3px solid var(--g)}
+.pill.sh{background:#E4EEF8;color:#1F4E79;display:inline-flex;align-items:center;gap:3px}
+.shw .chip{background:#E4EEF8;color:#1F4E79;margin:1px 2px}
+.tg{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--vo);border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 10px;cursor:pointer;white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+  <img alt="SAO6" src="data:image/png;base64,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">
+  <div><h1>Mis compromisos</h1><div class="sub">Portal de compromisos · Comités y reuniones SAO6</div><div class="upd" id="upd"></div></div>
+  <div class="who" id="who"></div>
+</header>
+<main>
+  <div id="vcb" hidden></div>
+  <nav class="tabs" id="tabs" hidden>
+    <button data-v="mias" class="on">Mis tareas</button>
+    <button data-v="todas">Todas las tareas</button>
+    <button data-v="ind">Indicadores</button>
+    <button data-v="personas">Responsables y correos</button>
+    <button data-v="datos">Datos</button>
+  </nav>
+  <section id="view"><div class="empty">Cargando…</div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let me=null,isAdmin=false,esJefe=false,verComo=null,guardado=null,admins=[],misNotas={},notasTodos={};
+let mias=null, datos=null, personas=null;
+let vista='mias', filtroEstado='Pendiente';
+const hoy=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const isISO=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'');
+const fmt=s=>isISO(s)?s.slice(8,10)+'/'+s.slice(5,7)+'/'+s.slice(0,4):(s||'—');
+const vencida=t=>t.e!=='Cerrado'&&isISO(t.pl)&&t.pl<hoy();
+const diasV=t=>Math.round((new Date(hoy())-new Date(t.pl))/864e5);
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+
+// Separa "Ricardo Montoya / Carlos Alvarado", "Arnaldo (con Diego y Ricardo)", etc.
+function nombres(resp){
+  let s=String(resp||'');
+  s=s.replace(/\(([^)]*)\)/g,(m,x)=>/^con\s/i.test(x.trim())?'/'+x.trim().slice(4):'');
+  s=s.replace(/\s+con\s+/gi,'/');
+  return s.split(/[\/,;]|\s+y\s+|\s+-\s+|\s+e\s+/).map(x=>x.trim()).filter(Boolean);
+}
+function personaDeAlias(){const m={};(personas?.personas||[]).forEach(p=>p.alias.forEach(a=>m[norm(a)]=p));return m}
+function personasDeTarea(t,map){const out=new Set();nombres(t.p).forEach(a=>{const p=map[norm(a)];if(p)out.add(p)});return [...out]}
+
+// ---------- tarjetas ----------
+const ICON_NOTA='<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3v18" stroke="currentColor" stroke-width="1.8"/><path d="M3 7h3M3 12h3M3 17h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 8h4M12 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const ICON_CIERRE='<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 12.3l2.7 2.7L16.2 9.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_GRUPO='<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" style="vertical-align:-2px"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 19c.6-3.2 3-5 6-5s5.4 1.8 6 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="9" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16.5 14.2c2.4.2 4 1.7 4.5 4.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const compartida=t=>(t.comp||nombres(t.p)).length>1;
+const claveT=t=>`${t.c}|${t.i}`;
+function tarjeta(t,showResp){
+  const v=vencida(t), c=t.e==='Cerrado', k=claveT(t), mi=misNotas[k];
+  const otras=isAdmin?(notasTodos[k]||[]).filter(n=>n.email!==me?.email):[];
+  const cls=c?'cerr':v?'venc':'pend';
+  const est=c?'<span class="pill c"><span class="emo" aria-hidden="true">🎉</span> Cerrado</span><span class="fel">¡Felicitaciones, tarea cumplida!</span>':v?`<span class="pill v">Vencido · ${diasV(t)} d</span>`:'<span class="pill p">Pendiente</span>';
+  return `<div class="task ${cls}" data-k="${esc(k)}" data-sr="${showResp?1:0}">
+    <div class="top">${est}${compartida(t)?`<span class="pill sh">${ICON_GRUPO} Compartida</span>`:''}<b>${esc(t.c)}</b><span>· Reunión del ${fmt(t.r)}</span><span>· #${esc(t.i)}</span>
+      ${puedeNotar(k)?`<button class="nb ${mi?'on':''}" data-nota="${esc(k)}" title="${mi?'Ver o editar mi nota':'Agregar una nota'}" aria-label="Nota de la tarea">${ICON_NOTA}${mi?'<i></i>':''}</button>`:''}${isAdmin&&!verComo&&!c?`<button class="nb cb" data-cierre="${esc(k)}" title="Cerrar la tarea (solo administradora; se guarda en el acta)" aria-label="Cerrar la tarea">${ICON_CIERRE}</button>`:''}</div>
+    <div class="t">${esc(t.t)}</div>
+    <div class="meta">
+      ${compartida(t)?(()=>{const todos=t.comp||nombres(t.p);const otros=showResp?todos:todos.filter(n=>norm(n)!==norm(me?.nombre||''));
+        return `<div class="shw"><span>${showResp?'Responsables':'Compartida con'}:</span> ${otros.map(n=>`<span class="chip">${esc(n)}</span>`).join(' ')}</div>`})()
+        :showResp?`<div><span>Responsable:</span> ${esc((t.comp||[t.p])[0]||t.p)}</div>`:''}
+      <div><span>Plazo:</span> <b ${v?'class="bad"':''}>${esc(fmt(t.pl))}</b></div>
+      ${c?`<div><span>Cerrado el:</span> ${esc(fmt(t.fc))}</div>`:''}
+    </div>
+    ${t.n?`<div class="extra"><b>Nota de cierre:</b> ${esc(t.n)}</div>`:''}
+    ${t.s?`<div class="extra"><b>Seguimiento:</b> ${esc(t.s)}</div>`:''}
+    ${mi?`<div class="extra minota"><b>Mi nota</b> <span class="muted">· ${esc(mi.fecha)}</span><br>${esc(mi.texto).replace(/\n/g,'<br>')}</div>`:''}
+    ${otras.map(n=>`<div class="extra otranota"><b>Nota de ${esc(n.nombre)}</b> <span class="muted">· ${esc(n.fecha)}</span><br>${esc(n.texto).replace(/\n/g,'<br>')}</div>`).join('')}
+  </div>`;
+}
+function puedeNotar(k){if(verComo)return false;return isAdmin||(mias?.tareas||[]).some(t=>claveT(t)===k)}
+function buscarTarea(k){return (mias?.tareas||[]).find(t=>claveT(t)===k)||(datos?.tareas||[]).find(t=>claveT(t)===k)}
+function refrescarTarjetas(k){document.querySelectorAll('.task[data-k]').forEach(el=>{if(el.dataset.k===k){const t=buscarTarea(k);if(t)el.outerHTML=tarjeta(t,el.dataset.sr==='1')}})}
+function abrirNota(k){
+  const t=buscarTarea(k); if(!t)return; const mi=misNotas[k];
+  modal(`<h2>${mi?'Mi nota':'Agregar una nota'}</h2>
+    <p class="muted" style="font-size:12.5px;margin-top:-4px">${esc(t.c)} · #${esc(t.i)}<br>${esc(t.t.length>160?t.t.slice(0,160)+'…':t.t)}</p>
+    <textarea id="nt" maxlength="1500" rows="6" style="width:100%;font:inherit;padding:8px;border:1px solid #cfd6cb;border-radius:6px;resize:vertical" placeholder="Escribe aquí avances, dudas o lo que quieras recordar de esta tarea…">${esc(mi?.texto||'')}</textarea>
+    <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--g);margin:4px 0 12px"><span>Solo tú y Gerencia pueden verla. No modifica el acta.</span><span id="nc">0/1500</span></div>
+    <div id="nerr"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">${mi?'<button class="btn sec" id="ndel" style="margin-right:auto;color:var(--rojo);border-color:var(--rojo)">Eliminar nota</button>':''}<button class="btn sec" id="mno">Cancelar</button><button class="btn" id="nok">Guardar</button></div>`);
+  const ta=$('#nt'), cnt=()=>$('#nc').textContent=`${ta.value.length}/1500`; cnt(); ta.oninput=cnt; ta.focus(); ta.setSelectionRange(ta.value.length,ta.value.length);
+  $('#mno').onclick=cerrarModal;
+  const guardar=async texto=>{$('#nok').disabled=true;
+    const r=await api('/api/notas',{clave:k,texto});
+    if(r.error){$('#nok').disabled=false;$('#nerr').innerHTML=`<div class="msg e">${esc(r.error)}</div>`;return}
+    if(r.nota)misNotas[k]=r.nota; else delete misNotas[k];
+    if(isAdmin){const lst=(notasTodos[k]||[]).filter(n=>n.email!==me.email); if(r.nota)lst.push({email:me.email,nombre:me.nombre||me.email,...r.nota}); notasTodos[k]=lst}
+    cerrarModal(); refrescarTarjetas(k)};
+  $('#nok').onclick=()=>guardar(ta.value.trim());
+  if(mi)$('#ndel').onclick=()=>guardar('');
+}
+
+function abrirCierre(k){
+  const t=buscarTarea(k); if(!t||t.e==='Cerrado')return;
+  modal(`<h2>Cerrar la tarea</h2>
+    <p class="muted" style="font-size:12.5px;margin-top:-4px">${esc(t.c)} · #${esc(t.i)} · ${esc(t.p||'')}<br>${esc(t.t.length>180?t.t.slice(0,180)+'…':t.t)}</p>
+    <label class="fl" style="display:block">Fecha de cierre<input type="date" id="cf" value="${hoy()}" style="max-width:200px"></label>
+    <label class="fl" style="display:block;margin-top:10px">Nota de cierre<textarea id="cn" maxlength="1000" rows="4" style="display:block;width:100%;font:inherit;padding:8px;border:1px solid #cfd6cb;border-radius:6px;margin-top:3px" placeholder="Cómo se cerró…">${esc(t.n||'')}</textarea></label>
+    <p class="muted" style="font-size:11.5px;margin:8px 0 12px">Se guarda en el acta vigente de «${esc(t.c)}» y el portal se actualiza enseguida. Si el acta está abierta en Excel, ciérrala antes.</p>
+    <div id="cerr"></div>
+    <div style="text-align:right"><button class="btn sec" id="mno">Cancelar</button> <button class="btn" id="cok">Cerrar tarea</button></div>`);
+  $('#mno').onclick=cerrarModal; $('#cn').focus();
+  $('#cok').onclick=async()=>{$('#cok').disabled=true;$('#cok').textContent='Guardando…';
+    const r=await api('/api/admin/cerrar',{clave:k,estado:'Cerrado',fecha:$('#cf').value,nota:$('#cn').value});
+    if(r.error){$('#cok').disabled=false;$('#cok').textContent='Cerrar tarea';$('#cerr').innerHTML=`<div class="msg e">${esc(r.error)}</div>`;return}
+    const [m]=await Promise.all([api('/api/mis-tareas'),cargarAdmin()]); if(!m.error)mias=m;
+    cerrarModal(); render()};
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-cierre]');if(b){e.preventDefault();abrirCierre(b.dataset.cierre)}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-nota]');if(b){e.preventDefault();abrirNota(b.dataset.nota)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#modal'))cerrarModal()});
+function ordenar(a){return a.slice().sort((x,y)=>{
+  const k=t=>t.e==='Cerrado'?2:vencida(t)?0:1; if(k(x)!==k(y))return k(x)-k(y);
+  const px=isISO(x.pl)?x.pl:'9999', py=isISO(y.pl)?y.pl:'9999'; return px<py?-1:px>py?1:0;})}
+function kpis(arr){
+  const n={Todas:arr.length,Pendiente:arr.filter(t=>t.e!=='Cerrado').length,Vencido:arr.filter(vencida).length,Cerrado:arr.filter(t=>t.e==='Cerrado').length};
+  const lab={Pendiente:'Pendientes',Vencido:'Vencidas',Cerrado:'Cerradas',Todas:'Todas'};
+  return `<div class="kpis">${['Todas','Pendiente','Cerrado','Vencido'].map(k=>`<div class="kpi ${k==='Vencido'?'venc':''} ${filtroEstado===k?'on':''}" data-f="${k}"><b>${n[k]}</b><span>${lab[k]}</span></div>`).join('')}</div>`;
+}
+function filtrar(arr){return arr.filter(t=>filtroEstado==='Todas'||(filtroEstado==='Pendiente'&&t.e!=='Cerrado')||(filtroEstado==='Vencido'&&vencida(t))||(filtroEstado==='Cerrado'&&t.e==='Cerrado'))}
+function bindKpis(){document.querySelectorAll('.kpi').forEach(k=>k.onclick=()=>{filtroEstado=k.dataset.f;render()})}
+
+// ---------- vistas ----------
+const fM={fc:'',sc:false}, fT={fc:'',fp:''};
+// Las tarjetas de totales se recalculan con los filtros de reunión (y persona); el estado se elige en las tarjetas.
+function pintarKpis(base,redibujar){$('#kp').innerHTML=kpis(base);document.querySelectorAll('#kp .kpi').forEach(k=>k.onclick=()=>{filtroEstado=k.dataset.f;redibujar()})}
+// Campo de filtro en el que se puede escribir: muestra las opciones que coinciden y filtra mientras se escribe.
+function combo(id,ph,val){return `<div class="cbx"><input type="search" id="${id}" placeholder="${esc(ph)}" value="${esc(val)}" autocomplete="off" spellcheck="false"><ul class="cbl" hidden></ul></div>`}
+function activarCombo(id,opts,cambio){const i=$('#'+id),ul=i.nextElementSibling;let sel=-1,m=[];
+  const show=todo=>{const q=todo?'':norm(i.value);m=opts.filter(o=>!q||norm(o).includes(q));sel=-1;
+    ul.innerHTML=m.length?m.map(o=>`<li>${esc(o)}</li>`).join(''):'<li class="nd">Sin coincidencias</li>';ul.hidden=false};
+  const marcar=()=>ul.querySelectorAll('li').forEach((li,n)=>{li.classList.toggle('on',n===sel);if(n===sel)li.scrollIntoView({block:'nearest'})});
+  const elegir=v=>{i.value=v;ul.hidden=true;cambio()};
+  i.addEventListener('focus',()=>show(true));
+  i.addEventListener('input',()=>{show(false);cambio()});
+  i.addEventListener('blur',()=>setTimeout(()=>ul.hidden=true,120));
+  i.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(ul.hidden)show(false);e.preventDefault();sel=Math.max(0,Math.min(m.length-1,sel+(e.key==='ArrowDown'?1:-1)));marcar()}
+    else if(e.key==='Enter'){if(!ul.hidden&&sel>=0&&m[sel]){e.preventDefault();elegir(m[sel])}else ul.hidden=true}
+    else if(e.key==='Escape')ul.hidden=true});
+  ul.addEventListener('mousedown',e=>{const li=e.target.closest('li:not(.nd)');if(!li)return;e.preventDefault();elegir(li.textContent)});
+}
+const SIN_PERSONA='Sin persona asignada';
+const coincide=(txt,v)=>{const q=norm(txt||'');return !q||norm(v||'').includes(q)};
+function vistaMias(){
+  const el=$('#view');
+  if(mias===null){el.innerHTML='<div class="empty">Cargando tus compromisos…</div>';return}
+  if(!mias.tareas){el.innerHTML='<div class="empty">Por ahora no tienes compromisos asignados.<br><span class="muted">Si crees que es un error, comunícate con Gerencia.</span></div>';return}
+  const arr=mias.tareas;
+  const comites=[...new Set(arr.map(t=>t.c))].sort();
+  el.innerHTML=`<p class="muted" style="margin-top:0">Hola${mias.nombre?' '+esc(mias.nombre.split(' ')[0]):''}. Estos son los compromisos a tu cargo en las actas de los comités. Solo lectura: si algo debe corregirse, avisa a Gerencia.</p>
+    <div id="kp"></div>
+    <div class="toolbar">${combo('fc','Reunión o comité: escribe para buscar…',fM.fc)}<label class="tg"><input type="checkbox" id="sc" ${fM.sc?'checked':''}> ${ICON_GRUPO} Solo compartidas (<span id="nsc"></span>)</label>${verComo?'':'<button class="btn sec" id="xl">⬇ Descargar en Excel</button>'}</div>
+    <div class="list" id="lst"></div>`;
+  const draw=()=>{fM.fc=$('#fc').value;fM.sc=$('#sc').checked;
+    const base=arr.filter(t=>coincide(fM.fc,t.c));
+    pintarKpis(base,draw); $('#nsc').textContent=base.filter(compartida).length;
+    const r=ordenar(filtrar(base)).filter(t=>!fM.sc||compartida(t));
+    $('#lst').innerHTML=r.length?r.map(t=>tarjeta(t,false)).join(''):'<div class="empty">No hay tareas con este filtro.</div>'};
+  activarCombo('fc',comites,draw);$('#sc').onchange=draw;draw();
+  if($('#xl'))$('#xl').onclick=()=>descargar('/descargar/mis-compromisos.xlsx',{estado:filtroEstado,comite:fM.fc});
+}
+function vistaTodas(){
+  const el=$('#view');
+  if(!datos?.tareas){el.innerHTML='<div class="empty">Aún no hay datos cargados.</div>';return}
+  const arr=datos.tareas, map=personaDeAlias();
+  const comites=[...new Set(arr.map(t=>t.c))].sort();
+  const pers=[...new Set(arr.flatMap(t=>personasDeTarea(t,map).map(p=>p.nombre)))].sort();
+  el.innerHTML=`<div id="kp"></div>
+    <div class="toolbar">${combo('fc','Reunión o comité: escribe para buscar…',fT.fc)}${combo('fp','Persona: escribe para buscar…',fT.fp)}<button class="btn sec" id="xl">⬇ Descargar en Excel</button></div>
+    <div class="muted" id="cnt" style="margin-bottom:8px"></div><div class="list" id="lst"></div>`;
+  const esSinPersona=()=>{const q=norm(fT.fp.trim());return q.length>=3&&norm(SIN_PERSONA).includes(q)&&!pers.some(n=>coincide(q,n))};
+  const draw=()=>{fT.fc=$('#fc').value;fT.fp=$('#fp').value;const sinP=esSinPersona();
+    const base=arr.filter(t=>{const ps=personasDeTarea(t,map).map(p=>p.nombre);
+      return coincide(fT.fc,t.c)&&(!fT.fp.trim()||(sinP?ps.length===0:ps.some(n=>coincide(fT.fp,n))))});
+    pintarKpis(base,draw);
+    const r=ordenar(filtrar(base));
+    $('#cnt').textContent=r.length+' tareas';
+    $('#lst').innerHTML=r.length?r.map(t=>tarjeta(t,true)).join(''):'<div class="empty">No hay tareas con este filtro.</div>'};
+  activarCombo('fc',comites,draw);activarCombo('fp',[SIN_PERSONA,...pers],draw);draw();
+  $('#xl').onclick=()=>descargar('/descargar/compromisos.xlsx',{estado:filtroEstado,comite:fT.fc.trim(),persona:esSinPersona()?'__none':fT.fp.trim()});
+}
+function conteoAlias(){const c={};(datos?.tareas||[]).forEach(t=>nombres(t.p).forEach(a=>{c[a]=(c[a]||0)+1}));return c}
+let filtroPers='', verTodos=false;
+function vistaPersonas(msg){
+  const el=$('#view'); const P=personas?.personas||[]; const C=personas?.cuentas||{}; const cnt=conteoAlias(); const map=personaDeAlias();
+  const libres=Object.keys(cnt).filter(a=>!map[norm(a)]).sort((a,b)=>cnt[b]-cnt[a]);
+  const nT={}; P.forEach(p=>nT[p.k]=0); (datos?.tareas||[]).forEach(t=>personasDeTarea(t,map).forEach(p=>nT[p.k]=(nT[p.k]||0)+1));
+  const estado=e=>{if(!e)return '<span class="muted">Sin correo</span>';const c=C[e];
+    if(!c)return '<span class="muted">Aún no ha ingresado</span>';
+    if(c.estado==='bloqueado')return '<span class="bad">Bloqueado</span>';
+    if(c.estado==='activa')return `<span class="ok">✓ Ha ingresado</span><br><span class="muted" style="font-size:11px">último: ${esc(c.desde||'')}</span>`;
+    return `<span class="amt">Código pendiente</span><br><span class="muted" style="font-size:11px">vence ${esc(c.vence)}</span>`};
+  const idx=P.map((p,i)=>i).sort((x,y)=>(nT[P[y].k]||0)-(nT[P[x].k]||0)||P[x].nombre.localeCompare(P[y].nombre));
+  const q=norm(filtroPers);
+  const conT=idx.filter(i=>(nT[P[i].k]||0)>0), sinT=P.length-conT.length;
+  const vis=(q||verTodos?idx:conT).filter(i=>{const p=P[i];return !q||norm([p.nombre,p.email,p.cargo,p.area,p.completo,...p.alias].join(' ')).includes(q)});
+  el.innerHTML=`${msg||''}
+  <div class="panel"><h2>Responsables con compromisos (${conT.length})</h2>
+   <p class="help">Cada persona agrupa los nombres con que aparece en las actas (p. ej. «Zamir» y «Zamir Caro»); las tareas compartidas le aparecen a cada una. Cada persona entra sola: escribe su correo en el portal y le llega un código para ingresar, sin contraseña. <b>Código de respaldo</b> sirve si a alguien no le llega el correo; <b>Bloquear</b> le quita el acceso.</p>
+   <div class="toolbar"><input type="search" id="pq" placeholder="Buscar persona, correo, cargo o área…" value="${esc(filtroPers)}">
+     <button class="btn sec" id="addp">+ Agregar persona</button>
+     <button class="btn sec" id="imp" title="Se lee solo cada vez que el archivo cambia">Leer listado de correos ahora</button>
+     <label style="font-size:12.5px;color:var(--g);white-space:nowrap"><input type="checkbox" id="vt" ${verTodos?'checked':''}> Ver también las ${sinT} personas del listado sin compromisos</label></div>
+   <p class="help" style="margin-top:-4px">Las personas y correos se toman solos del archivo «${esc(personas?.listado||'Correos Administrativos.xlsx')}» de la carpeta Comités y reuniones en cada revisión (11:00 a. m. y 4:00 p. m.)${personas?.listado_leido?` · leído por última vez: ${esc(personas.listado_leido)}`:''}.</p>
+   <div id="addbox"></div>
+   <div style="overflow-x:auto"><table><thead><tr><th>Persona</th><th>Nombres en las actas</th><th>Tareas</th><th style="width:250px">Correo</th><th>Cuenta</th><th></th></tr></thead><tbody>
+   ${vis.map(i=>{const p=P[i];return `<tr><td><b>${esc(p.nombre)}</b>${admins.includes(p.email)?' <span class="muted" style="font-size:11px">· Administradora</span>':''}${p.cargo||p.area?`<br><span class="muted" style="font-size:11px">${esc([p.cargo,p.area].filter(Boolean).join(' · '))}</span>`:''}${(personas?.jefes?.[p.k]||[]).length?`<br><span class="muted" style="font-size:11px">Responsable del proceso: ${esc(personas.jefes[p.k].join(', '))}</span>`:''}</td>
+     <td>${p.alias.map((a,j)=>`<span class="chip">${esc(a)}<button title="Quitar" data-rm="${i}:${j}">×</button></span>`).join('')}<button class="chip" style="border:0;cursor:pointer" title="Agregar otro nombre con que aparece en las actas" data-al="${i}">+</button></td>
+     <td>${nT[p.k]||0}</td>
+     <td><input type="email" value="${esc(p.email)}" data-em="${i}" placeholder="correo@sao6.com.co" style="width:100%"></td>
+     <td>${estado(p.email)}</td>
+     <td style="white-space:nowrap">${!p.email||admins.includes(p.email)?'':C[p.email]?.estado==='bloqueado'?`<button class="btn sec" data-ub="${esc(p.email)}">Permitir acceso</button>`:`<button class="btn sec" title="Ver el portal como esta persona" data-vcp="${esc(p.email)}">Ver como</button> <button class="btn sec" title="Por si no le llega el correo con el código" data-cd="${esc(p.email)}">Código de respaldo</button> <button class="btn sec" title="Bloquear acceso" data-bq="${esc(p.email)}">Bloquear</button>`}</td></tr>`}).join('')||`<tr><td colspan="6" class="muted">${q?'Nadie coincide con la búsqueda.':'Aún no hay personas con compromisos.'}</td></tr>`}
+   </tbody></table></div></div>
+  <div class="panel"><h2>Nombres sin persona (${libres.length})</h2>
+   <p class="help">Nombres que aparecen como responsables y no están asignados a nadie (áreas, «Sin asignar», nombres nuevos de actas recientes). Asígnalos a una persona o crea una nueva; los que dejes aquí solo se ven en «Todas las tareas».</p>
+   <table><thead><tr><th>Nombre en las actas</th><th>Tareas</th><th>Asignar a</th></tr></thead><tbody>
+   ${libres.map(a=>`<tr><td>${esc(a)}</td><td>${cnt[a]}</td><td><select data-as="${esc(a)}"><option value="">—</option><option value="__new">+ Nueva persona con este nombre</option>${P.map((p,i)=>[p.nombre,i]).sort((x,y)=>x[0].localeCompare(y[0])).map(([n,i])=>`<option value="${i}">${esc(n)}</option>`).join('')}</select></td></tr>`).join('')||'<tr><td colspan="3" class="muted">Todos los nombres están asignados.</td></tr>'}
+   </tbody></table></div>`;
+  $('#vt').onchange=e=>{verTodos=e.target.checked;vistaPersonas()};
+  const pq=$('#pq'); pq.oninput=()=>{filtroPers=pq.value;const pos=pq.selectionStart;vistaPersonas();const n=$('#pq');n.focus();n.setSelectionRange(pos,pos)};
+  $('#addp').onclick=()=>{$('#addbox').innerHTML=`<div class="panel" style="background:var(--bg)"><b>Nueva persona</b>
+     <div class="toolbar" style="margin-top:8px"><input id="nn" placeholder="Nombre (como aparece en las actas)"><input id="ne" type="email" placeholder="correo@sao6.com.co"><input id="nc" placeholder="Cargo (opcional)"><button class="btn" id="ns">Agregar</button></div></div>`;
+    $('#nn').focus();
+    $('#ns').onclick=async()=>{const n=$('#nn').value.trim(),e=$('#ne').value.trim().toLowerCase();if(!n){$('#nn').focus();return}
+      P.push({k:'p'+Date.now(),nombre:n,alias:[n],email:e,cargo:$('#nc').value.trim(),area:''});filtroPers=n;await guardarPersonas()}};
+  $('#imp').onclick=async()=>{$('#imp').disabled=true;const r=await api('/api/admin/importar',{});
+    await cargarPersonas();vistaPersonas(r.error?`<div class="msg e">${esc(r.error)}</div>`:`<div class="msg i">Listado leído: ${r.nuevos} personas nuevas y ${r.actualizados} actualizadas.</div>`)};
+  el.querySelectorAll('[data-al]').forEach(b=>b.onclick=()=>{const i=+b.dataset.al;modal(`<h2>Otro nombre para ${esc(P[i].nombre)}</h2><p class="muted">Escribe el nombre tal como aparece en las actas (p. ej. solo el nombre o con apellido).</p><input id="alv" style="width:100%"><div style="text-align:right;margin-top:12px"><button class="btn sec" id="mno">Cancelar</button> <button class="btn" id="msi">Agregar</button></div>`);
+    $('#alv').focus();$('#mno').onclick=cerrarModal;$('#msi').onclick=async()=>{const v=$('#alv').value.trim();cerrarModal();if(v){P[i].alias.push(v);await guardarPersonas()}}});
+  el.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const[i,j]=b.dataset.rm.split(':').map(Number);P[i].alias.splice(j,1);if(!P[i].alias.length&&!P[i].email)P.splice(i,1);await guardarPersonas()});
+  el.querySelectorAll('[data-as]').forEach(s=>s.onchange=async()=>{const a=s.dataset.as;if(!s.value)return;
+    if(s.value==='__new')P.push({k:'p'+Date.now(),nombre:a,alias:[a],email:''});else P[+s.value].alias.push(a);
+    await guardarPersonas()});
+  el.querySelectorAll('[data-em]').forEach(inp=>inp.onchange=async()=>{const p=P[+inp.dataset.em];const v=inp.value.trim().toLowerCase();if(v!==p.email){const prev=p.email;p.email=v;if(!await guardarPersonas())p.email=prev}});
+  el.querySelectorAll('[data-cd]').forEach(b=>b.onclick=()=>generarCodigo(b.dataset.cd));
+  el.querySelectorAll('[data-vcp]').forEach(b=>b.onclick=()=>verComoPersona(b.dataset.vcp));
+  el.querySelectorAll('[data-bq]').forEach(b=>b.onclick=()=>confirmar(`¿Bloquear el acceso de ${b.dataset.bq}? No podrá entrar al portal hasta que lo permitas de nuevo.`,async()=>{
+    const r=await api('/api/admin/bloquear',{email:b.dataset.bq});if(r.ok){personas.cuentas=r.cuentas;vistaPersonas('<div class="msg i">Acceso bloqueado.</div>')}else vistaPersonas(`<div class="msg e">${esc(r.error)}</div>`)}));
+  el.querySelectorAll('[data-ub]').forEach(b=>b.onclick=async()=>{const r=await api('/api/admin/bloquear',{email:b.dataset.ub,desbloquear:true});if(r.ok){personas.cuentas=r.cuentas;vistaPersonas('<div class="msg i">Acceso permitido de nuevo.</div>')}});
+}
+async function guardarPersonas(){
+  const r=await api('/api/admin/personas',{personas:personas.personas});
+  if(r.error){vistaPersonas(`<div class="msg e">${esc(r.error)}</div>`);await cargarPersonas();return false}
+  personas.cuentas=r.cuentas;vistaPersonas();return true;
+}
+async function generarCodigo(email){
+  const r=await api('/api/admin/codigo',{email});
+  if(r.error){vistaPersonas(`<div class="msg e">${esc(r.error)}</div>`);return}
+  await cargarPersonas();
+  modal(`<h2>Código de activación</h2><p>Entrégale este código a <b>${esc(email)}</b>. Para entrar escribe su correo, pulsa «Ya tengo un código» y usa este.</p>
+    <div class="codigo">${esc(r.codigo)}</div><p class="muted">Válido hasta el ${esc(r.vence)}. Solo se muestra una vez; si se pierde, genera otro.</p>
+    <p class="muted" style="font-size:12px">Mensaje sugerido: «Ingresa a ${esc(location.origin)} con tu correo ${esc(email)}, pulsa «Ya tengo un código» y usa ${esc(r.codigo)}.»</p>
+    <div style="text-align:right"><button class="btn sec" id="cp">Copiar mensaje</button> <button class="btn" id="mok">Listo</button></div>`);
+  $('#cp').onclick=()=>{navigator.clipboard?.writeText(`Ingresa a ${location.origin} con tu correo ${email}, pulsa «Ya tengo un código» y usa ${r.codigo} para ver tus compromisos.`).then(()=>$('#cp').textContent='Copiado ✓',()=>{})};
+  $('#mok').onclick=()=>{cerrarModal();vistaPersonas()};
+}
+function modal(html){cerrarModal();const d=document.createElement('div');d.id='modal';d.innerHTML=`<div class="mbox">${html}</div>`;document.body.append(d)}
+function cerrarModal(){$('#modal')?.remove()}
+function confirmar(txt,fn){modal(`<p>${esc(txt)}</p><div style="text-align:right"><button class="btn sec" id="mno">Cancelar</button> <button class="btn" id="msi">Sí, continuar</button></div>`);$('#mno').onclick=cerrarModal;$('#msi').onclick=async()=>{cerrarModal();await fn()}}
+function alertMsg(t){const d=document.createElement('div');d.className='msg e';d.textContent=t;$('#view').prepend(d)}
+
+function vistaDatos(msg){
+  const el=$('#view');
+  el.innerHTML=`${msg||''}
+  <div class="panel"><h2>Origen de los datos</h2>
+   <p class="help">El portal lee directamente el acta vigente (la más reciente) de cada carpeta de comité: cualquier cambio en un acta se ve al recargar la página. A las 11:00 a. m. y a las 4:00 p. m. además lee el listado de correos, avisa por correo los compromisos nuevos.</p>
+   <p>Compromisos cargados: <b>${datos?.tareas?.length||0}</b><br><span class="muted">${esc(datos?.generado||'')}</span><br><span class="muted">Última modificación de un acta: ${esc(datos?.archivo||'—')}</span><br><span class="muted">Última revisión de las actas: ${esc(me?.revision||'—')} · próximas: 11:00 a. m. y 4:00 p. m.</span></p>
+   <button class="btn" id="act">Hacer la revisión ahora</button> <span id="ast" class="muted"></span>
+   <p class="help" style="margin-top:10px">Hace en este momento la revisión de las 11:00 a. m. / 4:00 p. m.: lee el listado de correos, envía los avisos de compromisos nuevos.</p></div>`;
+  $('#act').onclick=async()=>{$('#act').disabled=true;$('#ast').textContent='Leyendo las actas…';
+    const r=await api('/api/admin/actualizar',{});
+    if(r.error){vistaDatos(`<div class="msg e">${esc(r.error)}</div>`);return}
+    await cargarAdmin();const ss=await api('/api/sesion');if(!ss.error){me=ss;$('#upd').textContent='Última actualización: '+ss.actualizado}vistaDatos(`<div class="msg i">Listo: ${r.total} compromisos.</div>`)};
+  panelCorreo();
+}
+
+const DS=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+async function panelCorreo(msg){
+  const el=document.createElement('div'); el.className='panel'; el.id='pcor'; $('#pcor')?.remove(); $('#view').append(el);
+  el.innerHTML='<h2>Correos automáticos</h2><p class="muted">Cargando…</p>';
+  const c=await api('/api/admin/correo'); if(c.error){el.innerHTML=`<h2>Correos automáticos</h2><div class="msg e">${esc(c.error)}</div>`;return}
+  const k=c.correo;
+  el.innerHTML=`<h2>Correos automáticos</h2>${msg||''}
+   <p class="help">El portal envía un <b>aviso</b> cuando a alguien se le asigna un compromiso nuevo en un acta, un <b>recordatorio</b> de sus pendientes y, a cada responsable de proceso (columna «Responsables del proceso» del listado), un <b>resumen de los pendientes de su equipo</b>, en los días y la hora que elijas. Se envían a las personas que tienen correo en «Responsables y correos».</p>
+   ${c.modo_prueba?`<div class="msg i"><b>Modo prueba activo:</b> todos los correos llegan solo a ${esc(c.correo_prueba)}, con el destinatario real en el asunto. Desactívalo cuando quieras que les lleguen a los responsables.</div>`:''}
+   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px">
+    <label class="fl">Servidor SMTP<input id="cs" value="${esc(k.servidor)}" placeholder="smtp.office365.com"></label>
+    <label class="fl">Puerto<input id="cp" type="number" value="${esc(k.puerto)}"></label>
+    <label class="fl">Seguridad<select id="cg">${[['starttls','STARTTLS (587)'],['ssl','SSL (465)'],['ninguna','Ninguna (25, relay interno)']].map(([v,l])=>`<option value="${v}" ${k.seguridad===v?'selected':''}>${l}</option>`).join('')}</select></label>
+    <label class="fl">Usuario<input id="cu" value="${esc(k.usuario)}" placeholder="compromisos@sao6.com.co" autocomplete="off"></label>
+    <label class="fl">Contraseña<input id="ck" type="password" placeholder="${k.clave_guardada?'•••••• (guardada)':''}" autocomplete="new-password"></label>
+    <label class="fl">Remitente (correo)<input id="cr" value="${esc(k.remitente)}" placeholder="compromisos@sao6.com.co"></label>
+    <label class="fl">Nombre del remitente<input id="cn" value="${esc(k.nombre_remitente)}"></label>
+    <label class="fl">Link del portal en los correos<input id="cl" value="${esc(c.url_portal)}"></label>
+   </div>
+   <div style="display:flex;gap:18px;flex-wrap:wrap;margin:14px 0;align-items:center">
+    <label><input type="checkbox" id="xn" ${c.notificar_nuevas?'checked':''}> Avisar compromisos nuevos</label>
+    <label><input type="checkbox" id="xj" ${c.resumen_jefes?'checked':''}> Resumen del equipo a cada responsable de proceso</label>
+    <label><input type="checkbox" id="xr" ${c.recordatorio_diario?'checked':''}> Recordatorio de pendientes a las <input id="ch" type="time" value="${esc(c.hora_recordatorio)}" style="padding:3px 6px"></label>
+    <span>${DS.map((d,i)=>`<label style="margin-right:6px"><input type="checkbox" class="xd" value="${i}" ${c.dias_recordatorio.includes(i)?'checked':''}>${d}</label>`).join('')}</span>
+   </div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+    <label><input type="checkbox" id="xp" ${c.modo_prueba?'checked':''}> Modo prueba: enviar todo solo a</label><input id="cpz" type="email" value="${esc(c.correo_prueba)}" style="width:260px">
+   </div>
+   <button class="btn" id="cgd">Guardar</button> <button class="btn sec" id="cpr" ${c.listo?'':'disabled title="Guarda primero el servidor y el remitente"'}>Enviar correo de prueba a ${esc(c.correo_prueba)}</button>
+   <p class="muted" style="font-size:12px">Último recordatorio enviado: ${esc(c.ultimo_recordatorio||'—')}</p>
+   <h2 style="margin-top:16px">Últimos envíos</h2>
+   <div style="overflow-x:auto"><table><thead><tr><th>Fecha</th><th>Para</th><th>Asunto</th><th>Resultado</th></tr></thead><tbody>
+   ${c.envios.map(x=>`<tr><td style="white-space:nowrap">${esc(x.fecha)}</td><td>${esc(x.para)}</td><td>${esc(x.asunto)}</td><td>${x.ok?'<span class="ok">Enviado</span>':`<span class="bad">Error</span> <span class="muted" style="font-size:11px">${esc(x.detalle)}</span>`}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">Aún no se han enviado correos.</td></tr>'}
+   </tbody></table></div>`;
+  const leer=()=>({correo:{servidor:$('#cs').value,puerto:$('#cp').value,seguridad:$('#cg').value,usuario:$('#cu').value,clave:$('#ck').value,remitente:$('#cr').value,nombre_remitente:$('#cn').value},
+    url_portal:$('#cl').value,notificar_nuevas:$('#xn').checked,recordatorio_diario:$('#xr').checked,resumen_jefes:$('#xj').checked,hora_recordatorio:$('#ch').value,
+    dias_recordatorio:[...document.querySelectorAll('.xd:checked')].map(x=>+x.value),modo_prueba:$('#xp').checked,correo_prueba:$('#cpz').value});
+  $('#cgd').onclick=async()=>{const r=await api('/api/admin/correo',leer());panelCorreo(r.error?`<div class="msg e">${esc(r.error)}</div>`:'<div class="msg i">Configuración guardada.</div>')};
+  $('#cpr').onclick=async()=>{$('#cpr').disabled=true;$('#cpr').textContent='Enviando…';
+    const r=await api('/api/admin/correo/prueba',{});
+    panelCorreo(r.error?`<div class="msg e">${esc(r.error)}</div>`:`<div class="msg i">Se enviaron los correos de prueba a ${esc(r.para)} (aviso de compromiso nuevo, recordatorio y resumen de equipo para un responsable de proceso)${r.ejemplo?', con compromisos de ejemplo porque no tienes pendientes':''}. Revisa tu bandeja de entrada y la de correo no deseado.</div>`)};
+}
+
+// ---------- indicadores ----------
+let ind={anio:'',mes:'',comite:'',estado:'',orden:'total',sel:null,cat:'Todas'};
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+function vistaInd(){
+  const el=$('#view');
+  if(!datos?.tareas){el.innerHTML='<div class="empty">Aún no hay datos cargados. Ve a «Actualizar y publicar».</div>';return}
+  const map=personaDeAlias(); const all=datos.tareas;
+  const anios=[...new Set(all.map(t=>(t.r||'').slice(0,4)).filter(Boolean))].sort().reverse();
+  const comites=[...new Set(all.map(t=>t.c))];
+  const T0=all.filter(t=>(!ind.anio||(t.r||'').slice(0,4)===ind.anio)&&(!ind.mes||(t.r||'').slice(5,7)===ind.mes)&&(!ind.comite||t.c===ind.comite));
+  const T=T0.filter(t=>!ind.estado||(ind.estado==='Pendiente'&&t.e!=='Cerrado')||(ind.estado==='Vencido'&&vencida(t))||(ind.estado==='Cerrado'&&t.e==='Cerrado'));
+  const nK={'':T0.length,Pendiente:T0.filter(t=>t.e!=='Cerrado').length,Cerrado:T0.filter(t=>t.e==='Cerrado').length,Vencido:T0.filter(vencida).length};
+  // agrupar por persona (una tarea compartida cuenta para cada responsable)
+  const G={};
+  const add=(k,n,t)=>{const g=G[k]||(G[k]={k,nombre:n,tareas:[]});g.tareas.push(t)};
+  T.forEach(t=>{const ps=personasDeTarea(t,map);if(ps.length)ps.forEach(p=>add(p.k,p.nombre,t));else add('__none','Sin persona asignada',t)});
+  const R=Object.values(G).map(g=>{const a=g.tareas;const ven=a.filter(vencida);
+    return {...g,total:a.length,cerradas:a.filter(t=>t.e==='Cerrado').length,pend:a.filter(t=>t.e!=='Cerrado').length,
+      vencidas:ven.length,max:ven.length?Math.max(...ven.map(diasV)):0,
+      cumpl:a.length?a.filter(t=>t.e==='Cerrado').length/a.length:0}});
+  const P=R.filter(r=>r.k!=='__none');
+  const best=(f,tie)=>P.slice().sort((a,b)=>f(b)-f(a)||(tie?tie(b)-tie(a):0))[0];
+  const tPend=best(r=>r.pend,r=>r.vencidas), tGes=best(r=>r.cerradas,r=>r.cumpl), tAtr=best(r=>r.vencidas,r=>r.max);
+  const ord={persona:(a,b)=>a.nombre.localeCompare(b.nombre),pend:(a,b)=>b.pend-a.pend,vencidas:(a,b)=>b.vencidas-a.vencidas||b.max-a.max,
+    cerradas:(a,b)=>b.cerradas-a.cerradas,cumpl:(a,b)=>b.cumpl-a.cumpl||b.total-a.total,max:(a,b)=>b.max-a.max,total:(a,b)=>b.total-a.total||b.vencidas-a.vencidas}[ind.orden];
+  // Por defecto: total de tareas. Si se filtra un estado o se ordena por vencidas/pendientes/cerradas,
+  // primero los que tienen más días de atraso y luego la cantidad.
+  const porAtraso=!!ind.estado||['vencidas','pend','cerradas'].includes(ind.orden);
+  R.sort((a,b)=>(a.k==='__none')-(b.k==='__none')||(porAtraso?(b.max-a.max)||ord(a,b):ord(a,b)||(b.max-a.max)));
+  const maxT=Math.max(1,...R.map(r=>r.total));
+  const periodo=(ind.mes?MESES[+ind.mes-1]+' ':'')+(ind.anio||'todos los años');
+  const tile=(cls,lab,r,txt,cat)=>r&&(cat==='Cerrado'?r.cerradas:cat==='Vencido'?r.vencidas:r.pend)>0?`<div class="top1 ${cls}" data-k="${r.k}" data-cat="${cat}"><div class="l">${lab}</div><div class="n">${esc(r.nombre)}</div><div class="v">${txt}</div></div>`:`<div class="top1 ${cls}"><div class="l">${lab}</div><div class="n muted">—</div><div class="v muted">Sin datos en el periodo</div></div>`;
+  const th=(k,l)=>`<th data-o="${k}" class="${(porAtraso?k==='max':ind.orden===k)?'s':''}">${l}</th>`;
+  const cell=(r,cat,v,cls)=>`<td class="num ${cls||''}"><a href="#" data-k="${r.k}" data-cat="${cat}">${v}</a></td>`;
+  el.innerHTML=`<div class="ind-f">
+    <label>Año <select id="ia"><option value="">Todos</option>${anios.map(a=>`<option ${a===ind.anio?'selected':''}>${a}</option>`).join('')}</select></label>
+    <label>Mes <select id="im"><option value="">Todos</option>${MESES.map((m,i)=>{const v=String(i+1).padStart(2,'0');return `<option value="${v}" ${v===ind.mes?'selected':''}>${m}</option>`}).join('')}</select></label>
+    <label>Comité <select id="ic"><option value="">Todos</option>${comites.map(c=>`<option ${c===ind.comite?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+    <label>Estado <select id="ie">${[['','Todas'],['Pendiente','Pendientes'],['Vencido','Vencidas'],['Cerrado','Cerradas']].map(([v,l])=>`<option value="${v}" ${v===ind.estado?'selected':''}>${l}</option>`).join('')}</select></label>
+    <label>Ordenar por <select id="io">${[['total','Tareas'],['vencidas','Vencidas'],['pend','Pendientes'],['cerradas','Cerradas'],['cumpl','% de cumplimiento'],['persona','Nombre (A-Z)']].map(([v,l])=>`<option value="${v}" ${v===ind.orden?'selected':''}>${l}</option>`).join('')}</select></label>
+    <span class="muted" style="font-size:12px">Periodo por fecha de la reunión en que se asignó el compromiso · ${T.length} compromisos · ${esc(periodo)}</span></div>
+  <div class="kpis">${[['','Todas'],['Pendiente','Pendientes'],['Cerrado','Cerradas'],['Vencido','Vencidas']].map(([v,l])=>`<div class="kpi ${v==='Vencido'?'venc':''} ${ind.estado===v?'on':''}" data-ie="${v}"><b>${nK[v]}</b><span>${l}</span></div>`).join('')}</div>
+  <div class="tops">
+    ${tile('a','Más tareas pendientes',tPend,tPend?`<b>${tPend.pend}</b> pendientes · ${tPend.vencidas} vencidas`:'','Pendiente')}
+    ${tile('','Más tareas gestionadas (cerradas)',tGes,tGes?`<b>${tGes.cerradas}</b> cerradas · ${Math.round(tGes.cumpl*100)}% de cumplimiento`:'','Cerrado')}
+    ${tile('r','Más tareas vencidas',tAtr,tAtr?`<b class="bad">${tAtr.vencidas}</b> vencidas · la más antigua lleva ${tAtr.max} días`:'','Vencido')}
+  </div>
+  <div class="panel"><h2>Compromisos por persona</h2>
+   <p class="help">Haz clic en una persona o en un número para ver sus tareas. Las tareas compartidas cuentan para cada responsable. Las vencidas son pendientes cuyo plazo ya pasó.</p>
+   <div class="leg"><span style="--c:#46913C">Cerradas</span><span style="--c:#E0B000">Pendientes a tiempo</span><span style="--c:#C00000">Vencidas</span></div>
+   <div style="overflow-x:auto"><table class="rk"><thead><tr>${th('persona','Persona')}${th('total','Total')}${th('pend','Pendientes')}${th('vencidas','Vencidas')}${th('max','Días máx. atraso')}${th('cerradas','Cerradas')}${th('cumpl','% cumplimiento')}<th style="width:30%">Distribución</th></tr></thead><tbody>
+   ${R.map(r=>`<tr class="row ${ind.sel===r.k?'sel':''}" data-k="${r.k}"><td><b class="${r.k==='__none'?'muted':''}">${esc(r.nombre)}</b></td>
+     ${cell(r,'Todas',r.total)}${cell(r,'Pendiente',r.pend)}${cell(r,'Vencido',r.vencidas,r.vencidas?'vr':'')}
+     <td class="num ${r.max?'vr':''}">${r.max?r.max+' d':'—'}</td>${cell(r,'Cerrado',r.cerradas)}<td class="num">${Math.round(r.cumpl*100)}%</td>
+     <td><div class="bar" style="width:${Math.max(8,r.total/maxT*100)}%">
+       ${r.cerradas?`<i class="bc" style="flex:${r.cerradas}" title="${r.cerradas} cerradas"></i>`:''}
+       ${r.pend-r.vencidas?`<i class="bp" style="flex:${r.pend-r.vencidas}" title="${r.pend-r.vencidas} pendientes a tiempo"></i>`:''}
+       ${r.vencidas?`<i class="bv" style="flex:${r.vencidas}" title="${r.vencidas} vencidas"></i>`:''}</div></td></tr>`).join('')}
+   </tbody></table></div></div>
+  <div id="det"></div>`;
+  $('#ia').onchange=e=>{ind.anio=e.target.value;vistaInd()};
+  $('#im').onchange=e=>{ind.mes=e.target.value;vistaInd()};
+  $('#ic').onchange=e=>{ind.comite=e.target.value;vistaInd()};
+  $('#ie').onchange=e=>{ind.estado=e.target.value;ind.cat=e.target.value||'Todas';vistaInd()};
+  el.querySelectorAll('[data-ie]').forEach(k=>k.onclick=()=>{ind.estado=k.dataset.ie;ind.cat=ind.estado||'Todas';vistaInd()});
+  $('#io').onchange=e=>{ind.orden=e.target.value;vistaInd()};
+  el.querySelectorAll('th[data-o]').forEach(h=>h.onclick=()=>{ind.orden=h.dataset.o;vistaInd()});
+  const pick=(k,cat)=>{ind.sel=k;ind.cat=(cat&&cat!=='Todas')?cat:(ind.estado||'Todas');vistaInd();detalle(G[k]);$('#det').scrollIntoView({behavior:'smooth'})};
+  el.querySelectorAll('tr.row').forEach(tr=>tr.onclick=e=>{if(e.target.closest('a'))return;pick(tr.dataset.k,'Todas')});
+  el.querySelectorAll('td.num a,.top1[data-k]').forEach(a=>a.onclick=e=>{e.preventDefault();pick(a.dataset.k,a.dataset.cat)});
+  if(ind.sel&&G[ind.sel])detalle(G[ind.sel]);
+}
+function detalle(g){
+  const box=$('#det'); if(!g){box.innerHTML='';return}
+  const cats=['Todas','Pendiente','Vencido','Cerrado'],lab={Todas:'Todas',Pendiente:'Pendientes',Vencido:'Vencidas',Cerrado:'Cerradas'};
+  const f=t=>ind.cat==='Todas'||(ind.cat==='Pendiente'&&t.e!=='Cerrado')||(ind.cat==='Vencido'&&vencida(t))||(ind.cat==='Cerrado'&&t.e==='Cerrado');
+  const r=ordenar(g.tareas.filter(f));
+  box.innerHTML=`<div class="panel"><h2>Tareas de ${esc(g.nombre)}</h2>
+   <nav class="tabs" style="margin-bottom:10px">${cats.map(c=>`<button data-c="${c}" class="${ind.cat===c?'on':''}">${lab[c]} (${g.tareas.filter(t=>c==='Todas'||(c==='Pendiente'&&t.e!=='Cerrado')||(c==='Vencido'&&vencida(t))||(c==='Cerrado'&&t.e==='Cerrado')).length})</button>`).join('')}</nav>
+   <div class="list">${r.length?r.map(t=>tarjeta(t,true)).join(''):'<div class="empty">No hay tareas en esta categoría.</div>'}</div></div>`;
+  box.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ind.cat=b.dataset.c;detalle(g)});
+}
+
+// ---------- ver el portal como otra persona (solo administradora, solo lectura) ----------
+function elegirVerComo(){
+  const P=(personas?.personas||[]).filter(p=>p.email).slice().sort((a,b)=>a.nombre.localeCompare(b.nombre));
+  modal(`<h2>Ver el portal como…</h2><p class="muted" style="margin-top:-4px">Elige una persona para ver su pantalla tal como ella la ve. Es solo lectura: no cambia nada ni le avisa.</p>
+    <input type="search" id="vcq" placeholder="Buscar nombre o correo…" style="width:100%;margin-bottom:8px">
+    <div id="vcl2" style="max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:6px"></div>
+    <div style="text-align:right;margin-top:12px"><button class="btn sec" id="mno">Cancelar</button></div>`);
+  const pinta=()=>{const q=norm($('#vcq').value);$('#vcl2').innerHTML=P.filter(p=>!q||norm(p.nombre+' '+p.email+' '+(p.cargo||'')).includes(q)).map(p=>
+    `<button class="vci" data-vc="${esc(p.email)}"><b>${esc(p.nombre)}</b><br><span class="muted" style="font-size:11.5px">${esc(p.email)}${p.cargo?' · '+esc(p.cargo):''}</span></button>`).join('')||'<p class="muted" style="padding:10px">Nadie coincide.</p>';
+    document.querySelectorAll('[data-vc]').forEach(b=>b.onclick=()=>{cerrarModal();verComoPersona(b.dataset.vc)})};
+  $('#vcq').oninput=pinta;pinta();$('#vcq').focus();$('#mno').onclick=cerrarModal;
+}
+async function verComoPersona(email){
+  const r=await api('/api/admin/ver-como?email='+encodeURIComponent(email)); if(r.error){alertMsg(r.error);return}
+  if(!guardado)guardado={mias,misNotas,datos,personas,vista,isAdmin,esJefe,fM:{...fM},filtroEstado,ind:{...ind}};
+  verComo={email:r.email,nombre:r.nombre,equipo:r.equipo};
+  isAdmin=false; esJefe=r.equipo>0; mias={nombre:r.nombre,tareas:r.tareas}; misNotas=r.notas||{};
+  datos=esJefe?{tareas:r.equipo_tareas}:null; personas=esJefe?{personas:r.equipo_personas}:null;
+  vista='mias'; filtroEstado='Pendiente'; fM.fc='';fM.sc=false; ind.sel=null;ind.comite='';ind.estado='';
+  pintarModo(); render();
+}
+function salirVerComo(){
+  if(!guardado)return; ({mias,misNotas,datos,personas,vista,isAdmin,esJefe,filtroEstado}=guardado); Object.assign(fM,guardado.fM); Object.assign(ind,guardado.ind);
+  guardado=null; verComo=null; pintarModo(); render();
+}
+function pintarModo(){
+  const b=$('#vcb');
+  if(verComo){b.hidden=false;b.innerHTML=`<div class="msg i" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px">👁 <span>Estás viendo el portal como <b>${esc(verComo.nombre)}</b> (${esc(verComo.email)}). Solo lectura.</span><span style="margin-left:auto"><button class="btn sec" id="vco">Ver como otra persona</button> <button class="btn" id="vcx">Volver a mi vista</button></span></div>`;
+    $('#vcx').onclick=salirVerComo; $('#vco').onclick=()=>{const g=guardado;salirVerComo();setTimeout(elegirVerComo,0)};}
+  else{b.hidden=true;b.innerHTML=''}
+  $('#tabs').hidden=!(isAdmin||esJefe);
+  document.querySelectorAll('#tabs button').forEach(t=>{t.hidden=!isAdmin&&!['mias','ind'].includes(t.dataset.v)||(!isAdmin&&!esJefe&&t.dataset.v==='ind');
+    if(t.dataset.v==='ind')t.textContent=!isAdmin&&esJefe?`Mi equipo (${verComo?verComo.equipo:me.equipo})`:'Indicadores'});
+}
+function render(){
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===vista));
+  ({mias:vistaMias,todas:vistaTodas,ind:vistaInd,personas:vistaPersonas,datos:vistaDatos})[vista]();
+}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{vista=b.dataset.v;filtroEstado=vista==='todas'||vista==='mias'?filtroEstado:filtroEstado;render()});
+
+function descargar(url,f){const q=new URLSearchParams(Object.entries(f).filter(([k,v])=>v));const a=document.createElement('a');a.href=url+'?'+q;a.download='';document.body.append(a);a.click();a.remove()}
+// ---------- sesión ----------
+async function api(url,body){
+  try{const r=await fetch(url,body===undefined?{credentials:'same-origin'}:{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json','X-Portal':'1'},body:JSON.stringify(body)});
+    const j=await r.json().catch(()=>({error:'Respuesta no válida del servidor'}));
+    if(r.status===401&&!/login|activar|solicitar|entrar/.test(url)){me=null;vistaLogin();}
+    return r.ok?j:{error:j.error||('Error '+r.status)}}
+  catch(e){return {error:'No hay conexión con el portal.'}}
+}
+async function cargarPersonas(){const r=await api('/api/admin/personas');if(!r.error){personas=r;admins=r.admins||[]}}
+async function cargarEquipo(){const r=await api('/api/equipo');if(!r.error){datos={tareas:r.tareas,generado:r.generado};personas={personas:r.personas}}}
+async function cargarAdmin(){const [d,_,nt]=await Promise.all([api('/api/admin/datos'),cargarPersonas(),api('/api/admin/notas')]);if(!d.error)datos=d;if(!nt.error)notasTodos=nt}
+function vistaLogin(modo,msg,ok,email){
+  $('#tabs').hidden=true;$('#who').innerHTML='';$('#upd').textContent='';
+  const paso2=modo==='codigo';
+  $('#view').innerHTML=`<div class="login"><h2>Ingresar</h2>
+   <p class="muted">${paso2?'Escribe el código de 6 dígitos que te llegó al correo.':'Escribe tu correo de la empresa y te enviaremos un código para entrar. No necesitas contraseña.'}</p>
+   ${msg?`<div class="msg e">${esc(msg)}</div>`:''}${ok?`<div class="msg i">${ok}</div>`:''}
+   <form id="lf"><label>Correo<input type="email" id="le" required autocomplete="username" ${paso2?'readonly':''}></label>
+   ${paso2?'<label>Código<input id="lc" required placeholder="123456" inputmode="numeric" autocomplete="one-time-code" style="font-size:20px;letter-spacing:4px;text-align:center"></label>':''}
+   <button class="btn" style="width:100%;margin-top:6px">${paso2?'Entrar':'Enviarme el código'}</button></form>
+   ${paso2?`<p style="text-align:center;margin-top:14px"><a href="#" id="re">Enviar otro código</a> · <a href="#" id="ot">Usar otro correo</a></p>`:`<p style="text-align:center;margin-top:14px"><a href="#" id="ya">Ya tengo un código</a></p>`}</div>`;
+  if(email)$('#le').value=email;
+  (paso2?$('#lc'):$('#le')).focus();
+  const pedir=async em=>{$('#lf button').disabled=true;$('#lf button').textContent='Enviando…';
+    const r=await api('/api/solicitar-codigo',{email:em});
+    if(r.error){vistaLogin(paso2?'codigo':'',r.error,null,em);return}
+    vistaLogin('codigo',null,`Te enviamos un código a <b>${esc(em)}</b>. Vence en ${r.minutos} minutos. Si no lo ves, revisa la carpeta de correo no deseado.`,em)};
+  if(paso2){$('#re').onclick=e=>{e.preventDefault();pedir(email)};$('#ot').onclick=e=>{e.preventDefault();vistaLogin()}}
+  else $('#ya').onclick=e=>{e.preventDefault();const em=$('#le').value.trim();if(!em||!$('#le').checkValidity()){$('#le').reportValidity();return}vistaLogin('codigo',null,null,em)};
+  $('#lf').onsubmit=async e=>{e.preventDefault();const em=$('#le').value.trim();
+    if(!paso2){pedir(em);return}
+    const r=await api('/api/entrar',{email:em,codigo:$('#lc').value});
+    if(r.error){vistaLogin('codigo',r.error,null,em);return}
+    arrancar()};
+}
+function vistaClave(msg){
+  $('#view').innerHTML=`<div class="login"><h2>Cambiar contraseña</h2>${msg||''}
+   <form id="cf"><label>Contraseña actual<input type="password" id="ca" required autocomplete="current-password"></label>
+   <label>Nueva contraseña<input type="password" id="cn" required autocomplete="new-password"></label>
+   <label>Repite la nueva<input type="password" id="cn2" required autocomplete="new-password"></label>
+   <button class="btn" style="width:100%">Guardar</button></form><p style="text-align:center"><a href="#" id="cv">Volver</a></p></div>`;
+  $('#cv').onclick=e=>{e.preventDefault();render()};
+  $('#cf').onsubmit=async e=>{e.preventDefault();if($('#cn').value!==$('#cn2').value){vistaClave('<div class="msg e">Las contraseñas no coinciden.</div>');return}
+    const r=await api('/api/cambiar-clave',{actual:$('#ca').value,nueva:$('#cn').value});
+    vistaClave(r.error?`<div class="msg e">${esc(r.error)}</div>`:'<div class="msg i">Contraseña actualizada.</div>')};
+}
+async function arrancar(){
+  $('#view').innerHTML='<div class="empty">Cargando…</div>';
+  const s=await api('/api/sesion'); if(s.error){vistaLogin();return}
+  me=s; isAdmin=!!s.admin;
+  $('#upd').textContent=s.actualizado?'Última actualización: '+s.actualizado:'';
+  if(isAdmin&&s.error_actualizacion)setTimeout(()=>alertMsg(s.error_actualizacion),50);
+  $('#who').innerHTML=`<span>${esc(s.nombre||s.email)}${isAdmin?' · Administradora':''}</span><br>${isAdmin?'<a href="#" id="vcl">Ver como…</a> · ':''}<a href="#" id="out">Salir</a>`;
+  if(isAdmin)$('#vcl').onclick=e=>{e.preventDefault();elegirVerComo()};
+  $('#out').onclick=async e=>{e.preventDefault();await api('/api/salir',{});me=null;mias=null;datos=null;personas=null;esJefe=false;isAdmin=false;vista='mias';vistaLogin()};
+  esJefe=!isAdmin&&(s.equipo||0)>0;
+  $('#tabs').hidden=!(isAdmin||esJefe);
+  document.querySelectorAll('#tabs button').forEach(b=>{b.hidden=esJefe&&!['mias','ind'].includes(b.dataset.v);
+    if(b.dataset.v==='ind')b.textContent=esJefe?`Mi equipo (${s.equipo})`:'Indicadores'});
+  const [m,nn]=await Promise.all([api('/api/mis-tareas'),api('/api/notas')]); mias=m.error?{}:m; misNotas=nn.error?{}:nn;
+  if(isAdmin)await cargarAdmin();
+  if(esJefe)await cargarEquipo();
+  render();
+}
+arrancar();
+// refresca solo cada 5 minutos si alguna acta cambió
+setInterval(async()=>{if(!me||verComo)return;const s=await api('/api/sesion');if(s.error)return;
+  const cambio=s.actualizado!==me.actualizado;me={...me,...s};$('#upd').textContent=s.actualizado?'Última actualización: '+s.actualizado:'';
+  if(cambio&&!$('#modal')&&!document.activeElement?.matches('input,select')){const m=await api('/api/mis-tareas');if(!m.error)mias=m;if(isAdmin)await cargarAdmin();if(esJefe)await cargarEquipo();render()}},5*60*1000);
+
+</script>
+</body>
+</html>
